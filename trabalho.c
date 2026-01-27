@@ -7,9 +7,9 @@ struct carrinho{
 
 };
 struct client{
-    long long int cpf; //não sei se uso char em vez de long long int, se quiser alterar so trocar na main
+    long int cpf; //não sei se uso char em vez de  long int, se quiser alterar so trocar na main
     char nome[temp];
-    long long int telefone;
+    long int telefone;
     struct carrinho meu_carrinho;
  };
 struct produto{
