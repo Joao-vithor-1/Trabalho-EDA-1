@@ -9,7 +9,7 @@ typedef struct carrinho{
 }carrinho;
 
 typedef struct client{
-    char cpf[12]; //não sei se uso char em vez de  long int, se quiser alterar so trocar na main
+    char cpf[12]; 
     char nome[temp];
     char telefone[20]; // alterei para char
     struct carrinho* meu_carrinho; // aponta pro primeiro item do carrinho dele
@@ -18,7 +18,7 @@ typedef struct client{
 }client;
 
 typedef struct produto{
-    char codigo[temp]; // é melhor usar char aqui, não?
+    char codigo[temp]; 
     char nome[temp];
     float preco;
     struct produto* proximo_produto;
@@ -41,13 +41,28 @@ void Cadastrar_Cliente(client** lista){
     printf("Digite o nome do cliente: ");
     scanf(" %[^\n]", novo_cliente->nome);
     printf("Digite o telefone do cliente: ");
-    scanf("%s", &novo_cliente->telefone); //troquei de ld para s
+    scanf("%s", novo_cliente->telefone); 
 
     novo_cliente->proximo_cliente = *lista;
     *lista = novo_cliente;
     
 } 
 
+void Listagem_Clientes(client* lista){
+    client* aux = lista;
+
+    if(aux == NULL){
+        printf("\n\tLista Vazia!\n");
+        return;
+    }
+
+    printf("\n\t%-15s | %-30s | %-15s", "CPF", "NOME", "TELEFONE");
+
+    while(aux != NULL){
+        printf("\n\t%-15s | %-30s | %-15s", aux->cpf, aux->nome, aux->telefone);
+        aux = aux->proximo_cliente;
+    }
+}
 
 int main(){
     int opcao;
