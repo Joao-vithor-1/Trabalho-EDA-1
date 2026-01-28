@@ -3,7 +3,6 @@
 #include <stdlib.h>
 const int temp = 100; //numero temporario ate o professor definir o tamanho da string
 typedef struct carrinho{
-    //char produtos[temp][50];
     struct produto* produto_escolhido; 
     struct carrinho* next_item; //aponta p proximo item do carrinho
 }carrinho;
@@ -11,7 +10,7 @@ typedef struct carrinho{
 typedef struct client{
     char cpf[12]; 
     char nome[temp];
-    char telefone[20]; // alterei para char
+    char telefone[20]; 
     struct carrinho* meu_carrinho; // aponta pro primeiro item do carrinho dele
     struct client* proximo_cliente; 
 
