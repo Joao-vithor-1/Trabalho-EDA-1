@@ -41,7 +41,7 @@ void Cadastrar_Cliente(client** lista){
     printf("Digite o nome do cliente: ");
     scanf(" %[^\n]", novo_cliente->nome);
     printf("Digite o telefone do cliente: ");
-    scanf("%ld", &novo_cliente->telefone); //deixei ld pq telefone ta long int
+    scanf("%s", &novo_cliente->telefone); //troquei de ld para s
 
     novo_cliente->proximo_cliente = *lista;
     *lista = novo_cliente;
