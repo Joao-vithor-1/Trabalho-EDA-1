@@ -34,13 +34,26 @@ void Cadastrar_Cliente(client** lista){
         return;
     }
 
+    client* aux = *lista;
+    
      novo_cliente->meu_carrinho = NULL;
 
-    printf("Digite o cpf do cliente: ");
+    printf("\n\tDigite o cpf do cliente: ");
     scanf("%s", novo_cliente->cpf);
-    printf("Digite o nome do cliente: ");
+
+    while(aux != NULL){
+        if(strcmp(novo_cliente->cpf, aux->cpf) == 0){
+            printf("\n\tCPF ja cadastrado!");
+            free(novo_cliente);
+            return;
+        } else {
+            aux = aux->proximo_cliente;
+        }
+    }
+    
+    printf("\n\tDigite o nome do cliente: ");
     scanf(" %[^\n]", novo_cliente->nome);
-    printf("Digite o telefone do cliente: ");
+    printf("\n\tDigite o telefone do cliente: ");
     scanf("%s", novo_cliente->telefone); 
 
     novo_cliente->proximo_cliente = *lista;
@@ -48,19 +61,16 @@ void Cadastrar_Cliente(client** lista){
     
 } 
 
-void Listagem_Clientes(client* lista){
+void Listagem_Clientes_Recursiva(client* lista){
     client* aux = lista;
 
     if(aux == NULL){
-        printf("\n\tLista Vazia!\n");
         return;
     }
 
-    printf("\n\t%-15s | %-30s | %-15s", "CPF", "NOME", "TELEFONE");
-
     while(aux != NULL){
         printf("\n\t%-15s | %-30s | %-15s", aux->cpf, aux->nome, aux->telefone);
-        aux = aux->proximo_cliente;
+        Listagem_Clientes_Recursiva(aux->proximo);
     }
 }
 
