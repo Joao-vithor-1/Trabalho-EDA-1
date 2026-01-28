@@ -11,7 +11,7 @@ typedef struct carrinho{
 typedef struct client{
     char cpf[12]; //não sei se uso char em vez de  long int, se quiser alterar so trocar na main
     char nome[temp];
-    long int telefone; // é melhor usar char aqui, não?
+    char telefone[20]; // é melhor usar char aqui, não?
     struct carrinho* meu_carrinho; // aponta pro primeiro item do carrinho dele
     struct client* proximo_cliente; 
 
