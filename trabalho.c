@@ -64,6 +64,28 @@ void Listagem_Clientes(client* lista){
     }
 }
 
+void Buscar_Cliente(client* lista){
+    char buscado[12];
+    printf("\n\tDigite o cpf a ser buscado: ");
+    scanf("%s", buscado);
+
+    client* aux = lista;
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->cpf) == 0){
+            printf("\n\tCPF encontrado!");
+            return;
+        } else {
+            aux = aux->proximo_cliente;
+        }
+    }
+
+    if(aux == NULL){
+        printf("\n\tCPF nao esta na lista!");
+    }
+
+}
+
 int main(){
     int opcao;
 
