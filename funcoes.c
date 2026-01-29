@@ -1,5 +1,6 @@
 #include "funcoes.h"
 
+
 // Gerenciamento de Clientes
 
 void Cadastrar_Cliente(client** lista){ 
@@ -180,23 +181,25 @@ void Cadastrar_Produto(produto** lista){
 
     printf("\n\tCodigo do produto a ser cadastrado: ");
     scanf("%s", novo_produto->codigo);
-
+    
     produto* aux = *lista;
 
     while(aux != NULL){
         if(strcmp(aux->codigo, novo_produto->codigo) == 0 || strcmp(aux->nome, novo_produto->nome) == 0){
-            printf("\n\tPorduto ja Cadastrado!");
+            printf("\n\tProduto ja Cadastrado!");
             free(novo_produto);
             return;
+            
         } else {
             aux = aux->proximo_produto;
         }
     }
-    
     printf("\n\tQuantidade do produto a ser cadastrada: ");
     scanf("%d",&novo_produto->quantidade);
 
-    produto* aux = *lista;
+    
+
+    aux = *lista;
 
     while(aux != NULL){
         if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
@@ -248,7 +251,7 @@ void Buscar_Produto(produto* lista){
     printf("\n\tCodigo nao cadastrado!");
 }
 
-void Editar_Dados_Produto(produto** lista){
+void Editar_Dados_Produtos(produto** lista){
   char buscado[11];
   printf("\n\tCodigo do produto a ser editado: ");
   scanf("%s", buscado);
