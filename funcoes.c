@@ -143,6 +143,7 @@ void Remover_Cliente(client** lista){
    scanf("%s", removido);
 
     if(strcmp(aux->cpf, removido) == 0){
+        printf("\n\tCliente Removido!");
         *lista = aux->proximo_cliente;
         free(aux);
         return;
@@ -154,6 +155,7 @@ void Remover_Cliente(client** lista){
     }
         
     if(strcmp(aux->cpf, removido) == 0 && aux != NULL){
+        printf("\n\tCliente Removido!");
         rastro->proximo_cliente = aux->proximo_cliente;
         free(aux);
         return;
@@ -177,7 +179,20 @@ void Cadastrar_Produto(produto** lista){
     scanf(" %[^\n]", novo_produto->nome); 
 
     printf("\n\tCodigo do produto a ser cadastrado: ");
-    scanf(" %s", novo_produto->codigo);
+    scanf("%s", novo_produto->codigo);
+
+    produto* aux = *lista;
+
+    while(aux != NULL){
+        if(strcmp(aux->codigo, novo_produto->codigo) == 0 || strcmp(aux->nome, novo_produto->nome) == 0){
+            printf("\n\tPorduto ja Cadastrado!");
+            free(novo_produto);
+            return;
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+    
     printf("\n\tQuantidade do produto a ser cadastrada: ");
     scanf("%d",&novo_produto->quantidade);
 
@@ -231,7 +246,6 @@ void Buscar_Produto(produto* lista){
     }
 
     printf("\n\tCodigo nao cadastrado!");
-
 }
 
 void Editar_Dados_Produto(produto** lista){
@@ -249,7 +263,7 @@ void Editar_Dados_Produto(produto** lista){
 
     if(aux != NULL){
         do{
-            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Preco \n\t3 - Codigo \n\t4 - Quantidade \n\t Opcao: ");
+            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Preco \n\t3 - Codigo \n\t4 - Quantidade \n\tOpcao: ");
             scanf("%d", &escolha);
             switch(escolha){
                 case 0:
@@ -275,14 +289,45 @@ void Editar_Dados_Produto(produto** lista){
                     printf("\n\tOpcao Invalida!");
                     break;
             }
-
-
         }while(escolha != 0);
     } else {
         printf("\n\tCodigo Nao Cadastrado");
-    }
-              
+    }             
+}
 
+void Remover_Produto(produto** lista){
+    produto* aux = *lista;
+
+    if(aux == NULL){
+        printf("\n\tA lista esta vazia!");
+        return;
+    }
+
+    int removido[11];
+    printf("Digite o codigo do produto a ser removido: ");
+    scanf("%s", removido);
+
+    if(strcmp(aux->codigo, removido) == 0){ /*primeiro da fila é quem vai ser removido*/
+        printf("\n\tProduto Removido!");
+        *lista = aux->proximo_produto;
+        free(aux);
+        return;
+    }
+
+    produto* rastro = NULL;
+
+    while(aux != NULL && strcmp(aux->codigo, removido) != 0){ //percorre a lista ate achar quem vai ser removido
+        rastro = aux;                                            //ou dar NULL
+        aux = aux->proximo_produto;
+    } 
+
+    if(aux != NULL && strcmp(aux->codigo, removido) == 0){
+        printf("\n\tProduto Removido!");
+        rastro->proximo_produto = aux->proximo_produto;
+        free(aux);
+        return;
+    }
+    printf("\n\tProduto nao Cadastrado!");    
 }
 
 
