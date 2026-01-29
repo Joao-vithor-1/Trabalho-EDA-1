@@ -19,8 +19,10 @@ typedef struct produto{
     char codigo[50]; 
     char nome[50];
     float preco;
+    int quantidade;
     struct produto* proximo_produto;
 
 }produto;
 
 #endif
+
