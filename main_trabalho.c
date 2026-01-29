@@ -1,4 +1,7 @@
 #include "funcoes.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(){
     int opcao;
@@ -27,3 +30,4 @@ int main(){
     }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
                 tipo, quando for 0, o programa encerra*/
 }
+
