@@ -32,6 +32,10 @@ void Cadastrar_Cliente(client** lista){
     scanf(" %[^\n]", novo_cliente->nome);
     printf("\n\tDigite o telefone do cliente: ");
     scanf("%s", novo_cliente->telefone); 
+    printf("\n\tDigite a data de Nascimento (DD/MM/AAAA): ");
+    scanf("%s", novo_cliente->data_de_nascimento);
+    printf("\n\tDigite o email: ");
+    scanf("%s", novo_cliente->email);
 
     novo_cliente->proximo_cliente = *lista;
     *lista = novo_cliente;
@@ -46,8 +50,8 @@ void Listagem_Clientes_Recursiva(client* lista){
     }
 
     while(aux != NULL){
-        printf("\n\t%-15s | %-30s | %-15s", aux->cpf, aux->nome, aux->telefone);
-        Listagem_Clientes_Recursiva(aux->proximo_cliente); //troquei proximo para proximo_cliente
+        printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", aux->cpf, aux->nome, aux->telefone, aux->data_de_nascimento, aux->email);
+        Listagem_Clientes_Recursiva(aux->proximo_cliente); 
     }
 }
 
@@ -70,8 +74,6 @@ void Buscar_Cliente(client* lista){
     if(aux == NULL){
         printf("\n\tCPF nao esta na lista!");
     }
-
-
 }
 
 void Editar_Dados_Cliente(client** lista){
@@ -91,7 +93,7 @@ void Editar_Dados_Cliente(client** lista){
         
         do {
             printf("\n\tQual dado deseja editar?");
-            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Telefone \n\t3 - CPF");
+            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Telefone \n\t3 - CPF \n\t4 - Telefone \n\t5 - Email");
             printf("\n\topcao: ");
             scanf("%d", &escolha);
             switch (escolha){
@@ -106,6 +108,14 @@ void Editar_Dados_Cliente(client** lista){
                 case 3:
                     printf("\n\tDigite o novo CPF: ");
                     scanf("%s", aux->cpf);
+                    break;
+                case 4:
+                    printf("\n\tDigite o novo Telefone: ");
+                    scanf("%s", aux->telefone);
+                    break;
+                case 5:
+                    printf("\n\tDigite o novo Email: ");
+                    scanf("%s", aux->email);
                     break;
                 case 0:
                     break;
@@ -266,4 +276,5 @@ void Editar_Dados_Produto(produto** lista){
               
 
 }
+
 
