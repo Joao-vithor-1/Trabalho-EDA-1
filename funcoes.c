@@ -1,4 +1,7 @@
 #include "funcoes.h"
+
+// Gerenciamento de Clientes
+
 void Cadastrar_Cliente(client** lista){ 
 
     client* novo_cliente = malloc(sizeof(client));
@@ -114,4 +117,39 @@ void Editar_Dados(client** lista){
     } else {
         printf("\n\tCPF nao cadastrado!");
     }
+}
+
+void Remover_Cliente(client** lista){
+   client* aux = *lista;
+   client* rastro = NULL;
+   
+   if(aux == NULL){
+        printf("\n\tLista Vazia!");
+        return;
+    }
+
+   char removido[12];
+   printf("\n\tDigite o CPF do cliente a ser removido: ");
+   scanf("%s", removido);
+
+    if(strcmp(aux->cpf, removido) == 0){
+        *lista = aux->proximo_cliente;
+        free(aux);
+        return;
+    }
+
+    while(aux !=  NULL && strcmp(aux->cpf, removido) != 0){
+        rastro = aux;
+        aux = aux->proximo_cliente;
+    }
+        
+    if(strcmp(aux->cpf, removido) == 0 && aux != NULL){
+        rastro->proximo_cliente = aux->proximo_cliente;
+        free(aux);
+        return;
+    }
+
+    printf("\n\tCliente nao Encontrado!");
+    
+
 }
