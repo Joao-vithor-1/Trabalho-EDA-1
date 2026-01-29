@@ -68,4 +68,50 @@ void Buscar_Cliente(client* lista){
         printf("\n\tCPF nao esta na lista!");
     }
 
+
+}
+
+void Editar_Dados(client** lista){
+    char buscado[12];
+    printf("\n\tDigite o cpf do cliente cujos dados serao edtados: ");
+    scanf("%s", buscado);
+
+    client* aux = *lista;
+    
+    while(aux != NULL && strcmp(buscado, aux->cpf) != 0){
+        aux = aux->proximo_cliente;
+    }
+
+    if(aux != NULL){
+        
+        int escolha;
+        
+        do {
+            printf("\n\tQual dado deseja editar?");
+            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Telefone \n\t3 - CPF");
+            printf("\n\topcao: ");
+            scanf("%d", &escolha);
+            switch (escolha){
+                case 1:
+                    printf("\n\tDigite o novo Nome: ");
+                    scanf("%s", aux->nome);
+                    break;
+                case 2:
+                    printf("\n\tDigite o novo Telefone: ");
+                    scanf("%s", aux->telefone);
+                    break;
+                case 3:
+                    printf("\n\tDigite o novo CPF: ");
+                    scanf("%s", aux->cpf);
+                    break;
+                case 0:
+                    break;
+                default:
+                    printf("\n\tValor Invalido!");
+                    break;
+            }
+        }while(escolha != 0);       
+    } else {
+        printf("\n\tCPF nao cadastrado!");
+    }
 }
