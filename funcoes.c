@@ -74,7 +74,7 @@ void Buscar_Cliente(client* lista){
 
 }
 
-void Editar_Dados(client** lista){
+void Editar_Dados_Cliente(client** lista){
     char buscado[12];
     printf("\n\tDigite o cpf do cliente cujos dados serao edtados: ");
     scanf("%s", buscado);
@@ -153,3 +153,4 @@ void Remover_Cliente(client** lista){
     
 
 }
+
