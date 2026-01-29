@@ -13,7 +13,7 @@ void Cadastrar_Cliente(client** lista){
 
     client* aux = *lista;
     
-     novo_cliente->meu_carrinho = NULL;
+    novo_cliente->meu_carrinho = NULL;
 
     printf("\n\tDigite o cpf do cliente: ");
     scanf("%s", novo_cliente->cpf);
@@ -276,5 +276,6 @@ void Editar_Dados_Produto(produto** lista){
               
 
 }
+
 
 
