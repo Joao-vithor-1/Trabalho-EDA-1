@@ -49,10 +49,10 @@ void Listagem_Clientes_Recursiva(client* lista){
         return;
     }
 
-    while(aux != NULL){
-        printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", aux->cpf, aux->nome, aux->telefone, aux->data_de_nascimento, aux->email);
-        Listagem_Clientes_Recursiva(aux->proximo_cliente); 
-    }
+    
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", aux->cpf, aux->nome, aux->telefone, aux->data_de_nascimento, aux->email);
+    Listagem_Clientes_Recursiva(aux->proximo_cliente); 
+    
 }
 
 void Buscar_Cliente(client* lista){
@@ -284,6 +284,7 @@ void Editar_Dados_Produto(produto** lista){
               
 
 }
+
 
 
 
