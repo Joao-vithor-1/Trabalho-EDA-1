@@ -1,8 +1,6 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 typedef struct carrinho{
     struct produto* produto_escolhido; 
     struct carrinho* next_item; 
@@ -24,4 +22,5 @@ typedef struct produto{
     struct produto* proximo_produto;
 
 }produto;
+
 #endif
