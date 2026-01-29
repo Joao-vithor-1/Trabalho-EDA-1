@@ -178,6 +178,8 @@ void Cadastrar_Produto(produto** lista){
 
     printf("\n\tCodigo do produto a ser cadastrado: ");
     scanf(" %s", novo_produto->codigo);
+    printf("\n\tQuantidade do produto a ser cadastrada: ");
+    scanf("%d",&novo_produto->quantidade);
 
     produto* aux = *lista;
 
@@ -202,7 +204,7 @@ void Listagem_Produto_Recursiva(produto* lista){
 
     if(aux == NULL) return;
 
-    printf("\n\t%-30s | %-10.2f R$ | %-10s", aux->nome, aux->preco, aux->codigo);
+    printf("\n\t%-30s | %-10.2f R$ | %-10s | %-10d", aux->nome, aux->preco, aux->codigo, aux->quantidade);
     Listagem_Produto_Recursiva(aux->proximo_produto);
 }
 
@@ -247,7 +249,7 @@ void Editar_Dados_Produto(produto** lista){
 
     if(aux != NULL){
         do{
-            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Preco \n\t3 - Codigo \n\t Opcao: ");
+            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Preco \n\t3 - Codigo \n\t4 - Quantidade \n\t Opcao: ");
             scanf("%d", &escolha);
             switch(escolha){
                 case 0:
@@ -264,10 +266,16 @@ void Editar_Dados_Produto(produto** lista){
                     printf("\n\tNovo codigo: ");
                     scanf("%s", aux->codigo);
                     break;
+                case 4:
+                    printf("\n\tNova quantidade");
+                    scanf("%d",&aux->quantidade);
+                    break;
+
                 default:
                     printf("\n\tOpcao Invalida!");
                     break;
             }
+
 
         }while(escolha != 0);
     } else {
