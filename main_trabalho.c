@@ -27,12 +27,12 @@ int main(){
                 printf("\n\tRemover Cliente - 5");
                 scanf("%d", &opcao_cliente);
                 switch(opcao_cliente){
-                    case 1: Cadastrar_Cliente(&lista_client);
-                    case 2: Listagem_Clientes_Recursiva(lista_client);
-                    case 3: Buscar_Cliente(lista_client);
-                    case 4 : Editar_Dados_Cliente(&lista_client);
-                    case 5 : Remover_Cliente(&lista_client);
-                    
+                    case 1: Cadastrar_Cliente(&lista_client); break;
+                    case 2: Listagem_Clientes_Recursiva(lista_client); break;
+                    case 3: Buscar_Cliente(lista_client); break;
+                    case 4 : Editar_Dados_Cliente(&lista_client); break;
+                    case 5 : Remover_Cliente(&lista_client); break;
+                    default: break;
                 }
             case 2:{
                 int opcao_produto;
@@ -43,12 +43,12 @@ int main(){
                 printf("\n\tRemover Produto - 5");
                 scanf("%d",&opcao_produto);
                 switch(opcao_produto){
-                    case 1 : Cadastrar_Produto(&lista_produto);
-                    case 2 : Listagem_Produto_Recursiva(lista_produto);
-                    case 3: Buscar_Produto(lista_produto);
-                    case 4: Editar_Dados_Produtos(&lista_produto);
-                    case 5: Remover_Produto(&lista_produto);
-
+                    case 1 : Cadastrar_Produto(&lista_produto); break;
+                    case 2 : Listagem_Produto_Recursiva(lista_produto); break;
+                    case 3: Buscar_Produto(lista_produto); break;
+                    case 4: Editar_Dados_Produtos(&lista_produto); break;
+                    case 5: Remover_Produto(&lista_produto); break;
+                    default: break;
                 }
 
             }
@@ -58,5 +58,6 @@ int main(){
     }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
                 tipo, quando for 0, o programa encerra*/
 }
+
 
 
