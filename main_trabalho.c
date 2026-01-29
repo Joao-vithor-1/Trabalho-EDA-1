@@ -5,6 +5,8 @@
 
 int main(){
     int opcao;
+    client * lista_client;
+    produto *lista_produto;
 
 
 
@@ -17,13 +19,39 @@ int main(){
 
         switch(opcao){
             case 1: {
-                int opcao_2;
-                printf("\n\tCadastro de Clientes");
-                printf("\n\tListagem de Clientes");
-                printf("\n\tBuscar Cliente");
-                printf("\n\t Editar Dados");
-                printf("\n\tRemover Cliente");
-                scanf("%d", &opcao_2);
+                int opcao_cliente;
+                printf("\n\tCadastro de Clientes - 1");
+                printf("\n\tListagem de Clientes - 2 ");
+                printf("\n\tBuscar Cliente - 3");
+                printf("\n\t Editar Dados - 4");
+                printf("\n\tRemover Cliente - 5");
+                scanf("%d", &opcao_cliente);
+                switch(opcao_cliente){
+                    case 1: Cadastrar_Cliente(&lista_client);
+                    case 2: Listagem_Clientes_Recursiva(lista_client);
+                    case 3: Buscar_Cliente(lista_client);
+                    case 4 : Editar_Dados_Cliente(&lista_client);
+                    case 5 : Remover_Cliente(&lista_client);
+                    
+                }
+            case 2:{
+                int opcao_produto;
+                printf("\n\tCadastro de Produtos - 1");
+                printf("\n\tListagem dos Produtos - 2 ");
+                printf("\n\tBuscar Produto - 3");
+                printf("\n\t Editar Dados - 4");
+                printf("\n\tRemover Produto - 5");
+                scanf("%d",&opcao_produto);
+                switch(opcao_produto){
+                    case 1 : Cadastrar_Produto(&lista_produto);
+                    case 2 : Listagem_Produto_Recursiva(lista_produto);
+                    case 3: Buscar_Produto(lista_produto);
+                    case 4: Editar_Dados_Produtos(&lista_produto);
+                    case 5: Remover_Produto(&lista_produto);
+
+                }
+
+            }
             }
             
         }
