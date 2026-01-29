@@ -25,6 +25,7 @@ int main(){
                 printf("\n\tBuscar Cliente - 3");
                 printf("\n\t Editar Dados - 4");
                 printf("\n\tRemover Cliente - 5");
+                printf("selecione uma das opcoes acima: ");
                 scanf("%d", &opcao_cliente);
                 switch(opcao_cliente){
                     case 1: Cadastrar_Cliente(&lista_client); break;
@@ -41,6 +42,7 @@ int main(){
                 printf("\n\tBuscar Produto - 3");
                 printf("\n\t Editar Dados - 4");
                 printf("\n\tRemover Produto - 5");
+                printf("selecione uma das opcoes acima: ");
                 scanf("%d",&opcao_produto);
                 switch(opcao_produto){
                     case 1 : Cadastrar_Produto(&lista_produto); break;
@@ -58,6 +60,7 @@ int main(){
     }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
                 tipo, quando for 0, o programa encerra*/
 }
+
 
 
 
