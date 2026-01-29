@@ -9,6 +9,8 @@ typedef struct carrinho{
 typedef struct client{
     char cpf[12]; 
     char nome[50];
+    char email[50];
+    char data_de_nascimento[12];
     char telefone[20]; 
     struct carrinho* meu_carrinho; 
     struct client* proximo_cliente; 
@@ -25,4 +27,5 @@ typedef struct produto{
 }produto;
 
 #endif
+
 
