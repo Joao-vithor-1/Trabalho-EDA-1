@@ -12,8 +12,8 @@ typedef struct client{
     char email[50];
     char data_de_nascimento[12];
     char telefone[20]; 
-    struct carrinho* meu_carrinho; 
-    struct client* proximo_cliente; 
+    struct carrinho* meu_carrinho; //aponta pro primeiro item do carrinho
+    struct client* proximo_cliente; //aponta pro proximo cliente
 
 }client;
 
@@ -22,10 +22,11 @@ typedef struct produto{
     char nome[50];
     float preco;
     int quantidade;
-    struct produto* proximo_produto;
+    struct produto* proximo_produto; //aponta pro proximo produto
 
 }produto;
 
 #endif
+
 
 
