@@ -12,7 +12,7 @@ int main(){
         printf("\n\t1 - Gerenciamento de Clientes");
         printf("\n\t2 - Gerenciamento de Produtos");
         printf("\n\t3 - Compras");
-        printf("selecione uma das opções acima: ");
+        printf("selecione uma das opcoes acima: ");
         scanf("%d", &opcao);
 
         switch(opcao){

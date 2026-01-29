@@ -153,4 +153,117 @@ void Remover_Cliente(client** lista){
     
 
 }
+//Gerenciamento de produtos
+
+void Cadastrar_Produto(produto** lista){
+    produto* novo_produto = malloc(sizeof(produto));
+
+    if(novo_produto == NULL){
+        printf("\n\tSem espaco na memoria!");
+        return;
+    }
+
+    printf("\n\tNome do produto a ser cadastrado: ");
+    scanf(" %[^\n]", novo_produto->nome); 
+
+    printf("\n\tCodigo do produto a ser cadastrado: ");
+    scanf(" %s", novo_produto->codigo);
+
+    produto* aux = *lista;
+
+    while(aux != NULL){
+        if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
+            printf("\n\tProduto ja cadastrado!");
+            free(novo_produto);
+            return;
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+    printf("\n\tPreco do produto (em reais): ");
+    scanf("%f", &novo_produto->preco);
+
+    novo_produto->proximo_produto = *lista;
+    *lista = novo_produto;
+}
+
+void Listagem_Produto_Recursiva(produto* lista){
+    produto* aux = lista;
+
+    if(aux == NULL) return;
+
+    printf("\n\t%-30s | %-10.2f R$ | %-10s", aux->nome, aux->preco, aux->codigo);
+    Listagem_Produto_Recursiva(aux->proximo_produto);
+}
+
+void Buscar_Produto(produto* lista){
+    produto* aux = lista;
+
+    if(aux == NULL){
+        printf("\n\tLista vazia!");
+        return;
+    }
+
+    char buscado[11];
+
+    printf("\n\tCodigo do produto buscado: ");
+    scanf("%s", buscado);
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->codigo) == 0){
+            printf("\n\tProduto encontrado!");
+            return;
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+
+    printf("\n\tCodigo nao cadastrado!");
+
+}
+
+void Editar_Dados_Produto(produto** lista){
+  char buscado[11];
+  printf("\n\tCodigo do produto a ser editado: ");
+  scanf("%s", buscado);
+
+  produto* aux = *lista;
+
+  while(aux != NULL && strcmp(aux->codigo, buscado) != 0){
+        aux = aux->proximo_produto;
+    }
+
+    int escolha;
+
+    if(aux != NULL){
+        do{
+            printf("\n\t0 - Sair \n\t1 - Nome \n\t2 - Preco \n\t3 - Codigo \n\t Opcao: ");
+            scanf("%d", &escolha);
+            switch(escolha){
+                case 0:
+                    break;
+                case 1:
+                    printf("\n\tNovo nome: ");
+                    scanf("%s", aux->nome);
+                    break;
+                case 2:
+                    printf("\n\tNovo preco: ");
+                    scanf("%f", &aux->preco);
+                    break;
+                case 3:
+                    printf("\n\tNovo codigo: ");
+                    scanf("%s", aux->codigo);
+                    break;
+                default:
+                    printf("\n\tOpcao Invalida!");
+                    break;
+            }
+
+        }while(escolha != 0);
+    } else {
+        printf("\n\tCodigo Nao Cadastrado");
+    }
+              
+
+}
 
