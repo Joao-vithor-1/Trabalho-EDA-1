@@ -303,7 +303,7 @@ void Remover_Produto(produto** lista){
         return;
     }
 
-    int removido[11];
+    char removido[11];
     printf("Digite o codigo do produto a ser removido: ");
     scanf("%s", removido);
 
@@ -329,6 +329,7 @@ void Remover_Produto(produto** lista){
     }
     printf("\n\tProduto nao Cadastrado!");    
 }
+
 
 
 
