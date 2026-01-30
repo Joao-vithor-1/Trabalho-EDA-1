@@ -10,6 +10,7 @@
 void Cadastrar_Cliente(client** lista);
 void Listagem_Clientes_Recursiva(client* lista);
 client *Buscar_Cliente(client* lista, char*buscado);
+void Buscar_Cliente(client* lista);
 void Editar_Dados_Cliente(client** lista);
 void Remover_Cliente(client** lista);
 
@@ -35,4 +36,5 @@ void Free_carrinho(carrinho *lista);
 
 
 #endif
+
 
