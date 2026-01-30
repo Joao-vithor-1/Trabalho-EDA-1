@@ -56,24 +56,26 @@ void Listagem_Clientes_Recursiva(client* lista){
     
 }
 
-void Buscar_Cliente(client* lista){
+client * Buscar_Cliente(client* lista, char *buscado){
+    /*
     char buscado[12];
     printf("\n\tDigite o cpf a ser buscado: ");
-    scanf("%s", buscado);
+    scanf("%s", buscado);*/
 
     client* aux = lista;
 
     while(aux != NULL){
         if(strcmp(buscado, aux->cpf) == 0){
-            printf("\n\tCPF encontrado!\n");
-            return;
+            printf("\n\tCPF encontrado!");
+            return aux;
         } else {
             aux = aux->proximo_cliente;
         }
     }
 
     if(aux == NULL){
-        printf("\n\tCPF nao esta na lista!\n");
+        printf("\n\tCPF nao esta na lista!");
+        return NULL;
     }
 }
 
@@ -126,7 +128,7 @@ void Editar_Dados_Cliente(client** lista){
             }
         }while(escolha != 0);       
     } else {
-        printf("\n\tCPF nao cadastrado!\n");
+        printf("\n\tCPF nao cadastrado!");
     }
 }
 
@@ -181,19 +183,31 @@ void Cadastrar_Produto(produto** lista){
 
     printf("\n\tCodigo do produto a ser cadastrado: ");
     scanf("%s", novo_produto->codigo);
-
-    printf("\n\tQuantidade do produto a ser cadastrada: ");
-    scanf("%d",&novo_produto->quantidade);
-
     
     produto* aux = *lista;
 
     while(aux != NULL){
         if(strcmp(aux->codigo, novo_produto->codigo) == 0 || strcmp(aux->nome, novo_produto->nome) == 0){
-            printf("\n\tProduto ja Cadastrado!\n");
+            printf("\n\tProduto ja Cadastrado!");
             free(novo_produto);
             return;
             
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+    printf("\n\tQuantidade do produto a ser cadastrada: ");
+    scanf("%d",&novo_produto->quantidade);
+
+    
+
+    aux = *lista;
+
+    while(aux != NULL){
+        if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
+            printf("\n\tProduto ja cadastrado!");
+            free(novo_produto);
+            return;
         } else {
             aux = aux->proximo_produto;
         }
@@ -214,23 +228,24 @@ void Listagem_Produto_Recursiva(produto* lista){
     Listagem_Produto_Recursiva(aux->proximo_produto);
 }
 
-void Buscar_Produto(produto* lista){
+produto *Buscar_Produto(produto* lista, char* buscado){
     produto* aux = lista;
 
     if(aux == NULL){
         printf("\n\tLista vazia!");
-        return;
+        return NULL;
     }
 
-    char buscado[11];
+    /*char buscado[11];
 
     printf("\n\tCodigo do produto buscado: ");
-    scanf("%s", buscado);
+    scanf("%s", buscado);*/
 
     while(aux != NULL){
         if(strcmp(buscado, aux->codigo) == 0){
             printf("\n\tProduto encontrado!");
-            return;
+            return aux;
+
         } else {
             aux = aux->proximo_produto;
         }
@@ -272,7 +287,7 @@ void Editar_Dados_Produtos(produto** lista){
                     scanf("%s", aux->codigo);
                     break;
                 case 4:
-                    printf("\n\tNova quantidade: ");
+                    printf("\n\tNova quantidade");
                     scanf("%d",&aux->quantidade);
                     break;
 
@@ -320,9 +335,38 @@ void Remover_Produto(produto** lista){
     }
     printf("\n\tProduto nao Cadastrado!");    
 }
+void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produto, client * lista_client){
+    carrinho *novo_carrinho = malloc(sizeof(carrinho));
+    char *codico = malloc(50*sizeof(char));
+    printf("\n\tselecione um produto dos  listados abaixo: ");
+    Listagem_Produto_Recursiva(lista_produto);
+    scanf("%s", codico);
+
+    novo_carrinho ->produto_escolhido = Buscar_Produto(lista_produto,codico);
+    free(&codico);
+    if(novo_carrinho->produto_escolhido ==NULL){
+        printf("Produto escolhido não existe");
+        free(novo_carrinho);
+        return;
+    }
+    char *cpf = malloc(50*sizeof(char));
+    printf("\nEscolha um Cliente: ");
+    scanf("%s",cpf);
+    client *aux = Buscar_Cliente(lista_client,cpf);
+    //chegaem se o cpf existe e se o head existe tambem
+    if(aux!=NULL){
+        if(aux->meu_carrinho==NULL) aux->meu_carrinho = novo_carrinho;
+    }
+    novo_carrinho ->next_item = malloc(sizeof(carrinho));
+
+
+    
 
 
 
+
+
+}
 
 
 
