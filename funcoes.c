@@ -349,16 +349,19 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
         free(novo_carrinho);
         return;
     }
-    char *cpf = malloc(50*sizeof(char));
+    char *cpf = malloc(20*sizeof(char));
     printf("\nEscolha um Cliente: ");
+    Listagem_Clientes_Recursiva(lista_client);
     scanf("%s",cpf);
+
     client *aux = Buscar_Cliente(lista_client,cpf);
-    //chegaem se o cpf existe e se o head existe tambem
+    //verificar se o cpf existe e se o head existe tambem
     free(cpf);
     if(aux!=NULL){
         if(aux->meu_carrinho==NULL) aux->meu_carrinho = novo_carrinho;
     }
     else{
+        free(novo_carrinho);
         return;
     }
     novo_carrinho ->next_item = *lista_carrinho;

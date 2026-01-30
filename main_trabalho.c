@@ -25,12 +25,18 @@ int main(){
                 printf("\n\tBuscar Cliente - 3");
                 printf("\n\t Editar Dados - 4");
                 printf("\n\tRemover Cliente - 5");
-                printf("selecione uma das opcoes acima: ");
+                printf("\n\tselecione uma das opcoes acima: ");
                 scanf("%d", &opcao_cliente);
                 switch(opcao_cliente){
                     case 1: Cadastrar_Cliente(&lista_client); break;
                     case 2: Listagem_Clientes_Recursiva(lista_client); break;
-                    case 3: Buscar_Cliente(lista_client); break;
+                    case 3: 
+                    char *buscado = malloc(12*sizeof(char));
+                    printf("\n\tDigite o cpf a ser buscado: ");
+                    scanf("%s", buscado);
+                    Buscar_Cliente(lista_client,buscado); 
+                    free(buscado);
+                    break;
                     case 4 : Editar_Dados_Cliente(&lista_client); break;
                     case 5 : Remover_Cliente(&lista_client); break;
                     default: break;
@@ -42,12 +48,18 @@ int main(){
                 printf("\n\tBuscar Produto - 3");
                 printf("\n\t Editar Dados - 4");
                 printf("\n\tRemover Produto - 5");
-                printf("selecione uma das opcoes acima: ");
+                printf("\n\tselecione uma das opcoes acima: ");
                 scanf("%d",&opcao_produto);
                 switch(opcao_produto){
                     case 1 : Cadastrar_Produto(&lista_produto); break;
                     case 2 : Listagem_Produto_Recursiva(lista_produto); break;
-                    case 3: Buscar_Produto(lista_produto); break;
+                    case 3: 
+                    char *buscado = malloc(12*sizeof(char));
+                    printf("\n\tCodigo do produto buscado: ");
+                    scanf("%s", buscado);
+                    Buscar_Produto(lista_produto,buscado); 
+                    free(buscado);
+                    break;
                     case 4: Editar_Dados_Produtos(&lista_produto); break;
                     case 5: Remover_Produto(&lista_produto); break;
                     default: break;
