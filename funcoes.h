@@ -17,9 +17,9 @@ void Remover_Cliente(client** lista);
 //Gerenciamento de produtos
 void Cadastrar_Produto(produto** lista);
 void Listagem_Produto_Recursiva(produto* lista);
+produto *Buscar_Produto(produto* lista, char* buscado);
 void Editar_Dados_Produtos(produto** lista);
 void Remover_Produto(produto** lista);
-produto *Buscar_Produto(produto* lista, char* buscado);
 void Buscar_Produto(produto* lista);
 
 //gerenciamento modo compra
@@ -36,5 +36,6 @@ void Free_carrinho(carrinho *lista);
 
 
 #endif
+
 
 
