@@ -358,8 +358,11 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     if(aux!=NULL){
         if(aux->meu_carrinho==NULL) aux->meu_carrinho = novo_carrinho;
     }
+    else{
+        return;
+    }
     novo_carrinho ->next_item = *lista_carrinho;
-    *lista_carrinho = novo_cliente;
+    *lista_carrinho = novo_carrinho;
 
 
     
@@ -369,6 +372,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
 
 
 }
+
 
 
 
