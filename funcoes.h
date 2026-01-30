@@ -25,5 +25,9 @@ void Cadastrar_Produto_Carrinho(carrinho ** lista_carrinho, produto *lista_produ
 
 
 //free listas
+void Free_produto(produto* lista);
+void Free_client(client *lista);
+void Free_carrinho(carrinho *lista);
+
 
 #endif

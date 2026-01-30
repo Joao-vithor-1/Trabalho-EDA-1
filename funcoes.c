@@ -368,13 +368,45 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     *lista_carrinho = novo_carrinho;
 
 
-    
-
-
-
-
 
 }
+
+
+
+void Free_produto(produto* lista){
+    produto *aux;
+    while(lista!=NULL){
+        aux = lista;
+        lista = lista->proximo_produto;
+        free(aux);
+    }
+}
+void Free_client(client *lista){
+    client *aux;
+    while(lista!=NULL){
+        aux = lista;
+        Free_carrinho(aux->meu_carrinho);
+        lista = lista->proximo_cliente;
+        free(aux);
+
+    }
+
+}
+void Free_carrinho(carrinho *lista){
+    carrinho *aux;
+    while(lista!=NULL){
+        aux = lista;
+        lista = lista->next_item;
+        free(aux);
+        
+    }
+
+}
+
+
+
+
+
 
 
 
