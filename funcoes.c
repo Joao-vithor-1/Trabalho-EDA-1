@@ -79,6 +79,31 @@ client * Buscar_Cliente(client* lista, char *buscado){
     }
 }
 
+void Buscar_Cliente(client* lista){
+
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    Listagem_Clientes_Recursiva(lista);
+
+    char buscado[12];
+    printf("\n\tDigite o cpf a ser buscado: ");
+    scanf("%s", buscado);
+
+    client* aux = lista;
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->cpf) == 0){
+            printf("\n\tCPF encontrado!");
+            return;
+        } else {
+            aux = aux->proximo_cliente;
+        }
+    }
+
+    if(aux == NULL){
+        printf("\n\tCPF nao esta na lista!\n");
+    }
+}
+
 void Editar_Dados_Cliente(client** lista){
     char buscado[12];
     printf("\n\tDigite o cpf do cliente cujos dados serao edtados: ");
@@ -335,6 +360,7 @@ void Remover_Produto(produto** lista){
     }
     printf("\n\tProduto nao Cadastrado!");    
 }
+
 void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produto, client * lista_client){
     carrinho *novo_carrinho = malloc(sizeof(carrinho));
     char *codico = malloc(50*sizeof(char));
@@ -366,11 +392,174 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     }
     novo_carrinho ->next_item = *lista_carrinho;
     *lista_carrinho = novo_carrinho;
+}
 
+void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){client* aux_cliente = *lista_clientes;
+    char cpf_cliente[12];
 
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+
+    Listagem_Clientes_Recursiva(aux_cliente);
+
+    printf("\n\tCPF do cliente para fazer a compra: ");
+    scanf("%s", cpf_cliente);
+
+    while (aux_cliente != NULL && strcmp(cpf_cliente, aux_cliente->cpf) != 0){
+        aux_cliente = aux_cliente->proximo_cliente;
+    }
+
+    if(aux_cliente == NULL){
+        printf("\n\tCPF nao cadatrado!");
+        return;
+    }
+
+    produto* aux_produto = lista_produtos;
+
+    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+
+    Listagem_Produto_Recursiva(lista_produtos);
+
+    char codigo_do_novo_produto[11];
+    printf("\n\tCodigo do produto a ser colocado no Carrinho: ");
+    scanf("%s", codigo_do_novo_produto);
+
+    while(aux_produto != NULL && strcmp(codigo_do_novo_produto, aux_produto->codigo) != 0){
+        aux_produto = aux_produto->proximo_produto;
+    }
+
+    if(aux_produto == NULL){
+        printf("\n\tProduto Nao Encontrado!\n");
+        return;
+    }
+
+    
+    int quantidade_adicionadas;
+    printf("\n\tQuantidade de %s serao colocados? (Max: %d)", aux_produto->nome, aux_produto->quantidade);
+    printf("\n\tQtd: ");
+    scanf("%d", &quantidade_adicionadas);
+
+    int maximo = aux_produto->quantidade;
+
+    aux_produto->quantidade = maximo - quantidade_adicionadas;
+
+    if(aux_produto->quantidade < 0){
+        printf("\n\tNao foi possivel adicionar ao carrinho!");
+        printf("\n\tExcedeu o limite do produto!");
+
+        aux_produto->quantidade = maximo;
+
+        return;
+    }
+    
+    carrinho* novo_item_do_carrinho = malloc(sizeof(carrinho));
+
+    novo_item_do_carrinho->qtd_comprada = quantidade_adicionadas; // coloca no carrinho numero x do item
+
+    novo_item_do_carrinho->produto_escolhido = aux_produto; // o item adicionado é o produto identificado pelo codigo
+
+    novo_item_do_carrinho->next_item = aux_cliente->meu_carrinho; //aponta para o meu ultimo item adicionado
+
+    aux_cliente->meu_carrinho = novo_item_do_carrinho; // o novo topo da lista é o item adicionado
 
 }
 
+void Itens_no_Carrinho(client* lista){
+
+    Listagem_Clientes_Recursiva(lista);
+
+    client* aux = lista;
+
+    if(aux == NULL){
+        printf("\n\tSem Clientes Cadastrados!\n");
+        return;
+    }
+
+    char dono_do_carrinho[12];
+    printf("\n\tCPF do cliente que deseja ver o carrinho: ");
+    scanf("%s", dono_do_carrinho);
+
+    while(aux != NULL && strcmp(dono_do_carrinho, aux->cpf) != 0) aux = aux->proximo_cliente;
+
+    if(aux == NULL){
+        printf("\n\tCPF nao cadastrado!\n");
+        return;
+    }
+
+    carrinho* auxiliar_carro = aux->meu_carrinho; //evita que o carrinho original que seja alterado
+
+    if(auxiliar_carro == NULL){
+        printf("\n\tSem Itens no carrinho!\n");
+        return;
+    }
+
+    char produto_nome[50];
+
+    int p = 0;
+
+    while(auxiliar_carro->produto_escolhido->nome[p] != '\0'){
+        produto_nome[p] = auxiliar_carro->produto_escolhido->nome[p];
+        p++;
+    }
+
+    p = 0;
+
+    char produto_codigo[11];
+
+    while(auxiliar_carro->produto_escolhido->codigo[p] != '\0'){
+        produto_codigo[p] = auxiliar_carro->produto_escolhido->codigo[p];
+        p++;
+    }
+
+    float produto_preco = auxiliar_carro->produto_escolhido->preco;    
+
+    int produto_quantidade = auxiliar_carro->qtd_comprada;
+
+    while(auxiliar_carro != NULL){
+        printf("\n\t%-40s | %-12s | %-12s | %-11s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+        printf("\n\t%-40s | %-10.2f R$| %-12s | %-11d\n", produto_nome, produto_preco, 
+            produto_codigo, produto_quantidade);
+        auxiliar_carro = auxiliar_carro->next_item;
+    }
+}
+
+
+void Custo_Total_do_Carrinho(client* lista_de_clientes){
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    Listagem_Clientes_Recursiva(lista_de_clientes);
+
+    char cpf_correto[12];
+    printf("\n\tCPF do carrinho do cliente: ");
+    scanf("%s", cpf_correto);
+
+    client* achador_de_pessoa = lista_de_clientes;
+
+    while(achador_de_pessoa != NULL && strcmp(achador_de_pessoa->cpf, cpf_correto) != 0){
+        achador_de_pessoa = achador_de_pessoa->proximo_cliente;
+    }
+
+    if(achador_de_pessoa == NULL){ // ve se o cpf foi cadastrado
+        printf("\n\tCPF nao cadastrado!\n"); 
+        return;
+    }
+
+    carrinho* auxiliar_de_conta = achador_de_pessoa->meu_carrinho;
+
+    if(auxiliar_de_conta == NULL) { //checa se o carrinho ta vazio
+        printf("\n\tCarrinho Vazio!\n");
+        return;
+    }
+
+    float total_a_pagar = 0;
+
+    while(auxiliar_de_conta != NULL){
+        total_a_pagar+= auxiliar_de_conta->produto_escolhido->preco * auxiliar_de_conta->qtd_comprada; // total a pagar é o preço * qntd
+        auxiliar_de_conta = auxiliar_de_conta->next_item; // passa para o novo item do carrinho
+    }
+
+    printf("\n\tO preco total a ser paho eh: %.2f R$\n", total_a_pagar);
+
+
+//free
 
 
 void Free_produto(produto* lista){
@@ -402,6 +591,7 @@ void Free_carrinho(carrinho *lista){
     }
 
 }
+
 
 
 
