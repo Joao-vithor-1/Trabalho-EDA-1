@@ -65,7 +65,7 @@ void Buscar_Cliente(client* lista){
 
     while(aux != NULL){
         if(strcmp(buscado, aux->cpf) == 0){
-            printf("\n\tCPF encontrado!");
+            printf("\n\tCPF encontrado!\n");
             return;
         } else {
             aux = aux->proximo_cliente;
@@ -126,7 +126,7 @@ void Editar_Dados_Cliente(client** lista){
             }
         }while(escolha != 0);       
     } else {
-        printf("\n\tCPF nao cadastrado!");
+        printf("\n\tCPF nao cadastrado!\n");
     }
 }
 
@@ -181,31 +181,19 @@ void Cadastrar_Produto(produto** lista){
 
     printf("\n\tCodigo do produto a ser cadastrado: ");
     scanf("%s", novo_produto->codigo);
+
+    printf("\n\tQuantidade do produto a ser cadastrada: ");
+    scanf("%d",&novo_produto->quantidade);
+
     
     produto* aux = *lista;
 
     while(aux != NULL){
         if(strcmp(aux->codigo, novo_produto->codigo) == 0 || strcmp(aux->nome, novo_produto->nome) == 0){
-            printf("\n\tProduto ja Cadastrado!");
+            printf("\n\tProduto ja Cadastrado!\n");
             free(novo_produto);
             return;
             
-        } else {
-            aux = aux->proximo_produto;
-        }
-    }
-    printf("\n\tQuantidade do produto a ser cadastrada: ");
-    scanf("%d",&novo_produto->quantidade);
-
-    
-
-    aux = *lista;
-
-    while(aux != NULL){
-        if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
-            printf("\n\tProduto ja cadastrado!");
-            free(novo_produto);
-            return;
         } else {
             aux = aux->proximo_produto;
         }
@@ -332,6 +320,7 @@ void Remover_Produto(produto** lista){
     }
     printf("\n\tProduto nao Cadastrado!");    
 }
+
 
 
 
