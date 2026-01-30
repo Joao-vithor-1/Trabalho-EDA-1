@@ -5,8 +5,8 @@
 
 int main(){
     int opcao;
-    client * lista_client = NULL;
-    produto *lista_produto = NULL;
+    client* lista_client = NULL;
+    produto* lista_produto = NULL;
 
 
 
@@ -66,6 +66,7 @@ int main(){
     }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
                 tipo, quando for 0, o programa encerra*/
 }
+
 
 
 
