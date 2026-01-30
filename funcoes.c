@@ -360,6 +360,35 @@ void Remover_Produto(produto** lista){
     printf("\n\tProduto nao Cadastrado!");    
 }
 
+void Buscar_Produto(produto* lista){
+    produto* aux = lista;
+
+    if(aux == NULL){
+        printf("\n\tLista vazia!");
+        return;
+    }
+
+    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+    Listagem_Produto_Recursiva(lista);
+
+    char buscado[11];
+
+    printf("\n\tCodigo do produto buscado: ");
+    scanf("%s", buscado);
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->codigo) == 0){
+            printf("\n\tProduto encontrado!");
+            return;
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+
+    printf("\n\tCodigo nao cadastrado!\n");
+}
+
+
 void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produto, client * lista_client){
     carrinho *novo_carrinho = malloc(sizeof(carrinho));
     char *codico = malloc(50*sizeof(char));
@@ -590,6 +619,7 @@ void Free_carrinho(carrinho *lista){
     }
 
 }
+
 
 
 
