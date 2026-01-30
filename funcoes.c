@@ -73,7 +73,7 @@ void Buscar_Cliente(client* lista){
     }
 
     if(aux == NULL){
-        printf("\n\tCPF nao esta na lista!");
+        printf("\n\tCPF nao esta na lista!\n");
     }
 }
 
@@ -284,7 +284,7 @@ void Editar_Dados_Produtos(produto** lista){
                     scanf("%s", aux->codigo);
                     break;
                 case 4:
-                    printf("\n\tNova quantidade");
+                    printf("\n\tNova quantidade: ");
                     scanf("%d",&aux->quantidade);
                     break;
 
@@ -332,6 +332,7 @@ void Remover_Produto(produto** lista){
     }
     printf("\n\tProduto nao Cadastrado!");    
 }
+
 
 
 
