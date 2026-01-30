@@ -38,6 +38,8 @@ int main(){
                     case 5 : Remover_Cliente(&lista_client); break;
                     default: break;
                 }
+                break;
+            }
             case 2:{
                 int opcao_produto;
                 printf("\n\t1 - Cadastro de Produtos");
@@ -58,16 +60,33 @@ int main(){
                     case 5: Remover_Produto(&lista_produto); break;
                     default: break;
                 }
+                break;
 
             }
+            case 3:{
+                int opcao_compra;
+                printf("\n\t1 - Adicionar ao Carrinho");
+                printf("\n\t2 - Listagem do Carrinho");
+                printf("\n\t3 - Preco Total do Carrinho");
+                printf("\n\t4 - Remover Produto do Carrinho");
+                printf("\n\tSelecione uma das opcoes acima: ");
+                scanf("%d", &opcao_compra);
+                switch(opcao_compra){
+                    case 1: Adicionar_Produtos_No_Carrinho(&lista_client, lista_produto); break;
+                    case 2 : Itens_no_Carrinho(lista_client); break;
+                    case 3: Custo_Total_do_Carrinho(lista_client); break;
+                    case 4: break;
+                }
+                break;
             }
-            
+            case 0:
+                break;
+            default:
+                printf("\n\tValor Invalido!");
+                break;
         }
-    }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
-                tipo, quando for 0, o programa encerra*/
+    }while(opcao != 0);                
 }
-
-
 
 
 

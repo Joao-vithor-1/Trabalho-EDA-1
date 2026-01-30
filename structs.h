@@ -3,6 +3,7 @@
 
 typedef struct carrinho{
     struct produto* produto_escolhido; 
+    int qtd_comprada;
     struct carrinho* next_item; 
 }carrinho;
 
@@ -27,6 +28,7 @@ typedef struct produto{
 }produto;
 
 #endif
+
 
 
 
