@@ -20,7 +20,7 @@ void Cadastrar_Cliente(client** lista){
 
     while(aux != NULL){
         if(strcmp(novo_cliente->cpf, aux->cpf) == 0){
-            printf("\n\tCPF ja cadastrado!");
+            printf("\n\tCPF ja cadastrado!\n");
             free(novo_cliente);
             return;
         } else {
@@ -50,7 +50,7 @@ void Listagem_Clientes_Recursiva(client* lista){
     }
 
     
-    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", aux->cpf, aux->nome, aux->telefone, aux->data_de_nascimento, aux->email);
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", aux->cpf, aux->nome, aux->telefone, aux->data_de_nascimento, aux->email);
     Listagem_Clientes_Recursiva(aux->proximo_cliente); 
     
 }
@@ -65,7 +65,7 @@ client * Buscar_Cliente(client* lista, char *buscado){
 
     while(aux != NULL){
         if(strcmp(buscado, aux->cpf) == 0){
-            printf("\n\tCPF encontrado!");
+            printf("\n\tCPF encontrado!\n");
             return aux;
         } else {
             aux = aux->proximo_cliente;
@@ -80,7 +80,7 @@ client * Buscar_Cliente(client* lista, char *buscado){
 
 void Buscar_Cliente(client* lista){
 
-    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
     Listagem_Clientes_Recursiva(lista);
 
     char buscado[12];
@@ -91,7 +91,7 @@ void Buscar_Cliente(client* lista){
 
     while(aux != NULL){
         if(strcmp(buscado, aux->cpf) == 0){
-            printf("\n\tCPF encontrado!");
+            printf("\n\tCPF encontrado!\n");
             return;
         } else {
             aux = aux->proximo_cliente;
@@ -137,8 +137,8 @@ void Editar_Dados_Cliente(client** lista){
                     scanf("%s", aux->cpf);
                     break;
                 case 4:
-                    printf("\n\tDigite o novo Telefone: ");
-                    scanf("%s", aux->telefone);
+                    printf("\n\tDigite o novo Nascimento: ");
+                    scanf("%s", aux->data_de_nascimento);
                     break;
                 case 5:
                     printf("\n\tDigite o novo Email: ");
@@ -152,7 +152,7 @@ void Editar_Dados_Cliente(client** lista){
             }
         }while(escolha != 0);       
     } else {
-        printf("\n\tCPF nao cadastrado!");
+        printf("\n\tCPF nao cadastrado!\n");
     }
 }
 
@@ -161,7 +161,7 @@ void Remover_Cliente(client** lista){
    client* rastro = NULL;
    
    if(aux == NULL){
-        printf("\n\tLista Vazia!");
+        printf("\n\tLista Vazia!\n");
         return;
     }
 
@@ -170,7 +170,7 @@ void Remover_Cliente(client** lista){
    scanf("%s", removido);
 
     if(strcmp(aux->cpf, removido) == 0){
-        printf("\n\tCliente Removido!");
+        printf("\n\tCliente Removido!\n");
         *lista = aux->proximo_cliente;
         free(aux);
         return;
@@ -182,13 +182,13 @@ void Remover_Cliente(client** lista){
     }
         
     if(strcmp(aux->cpf, removido) == 0 && aux != NULL){
-        printf("\n\tCliente Removido!");
+        printf("\n\tCliente Removido!\n");
         rastro->proximo_cliente = aux->proximo_cliente;
         free(aux);
         return;
     }
 
-    printf("\n\tCliente nao Encontrado!");
+    printf("\n\tCliente nao Encontrado!\n");
     
 
 }
@@ -198,7 +198,7 @@ void Cadastrar_Produto(produto** lista){
     produto* novo_produto = malloc(sizeof(produto));
 
     if(novo_produto == NULL){
-        printf("\n\tSem espaco na memoria!");
+        printf("\n\tSem espaco na memoria!\n");
         return;
     }
 
@@ -212,7 +212,7 @@ void Cadastrar_Produto(produto** lista){
 
     while(aux != NULL){
         if(strcmp(aux->codigo, novo_produto->codigo) == 0 || strcmp(aux->nome, novo_produto->nome) == 0){
-            printf("\n\tProduto ja Cadastrado!");
+            printf("\n\tProduto ja Cadastrado!\n");
             free(novo_produto);
             return;
             
@@ -229,7 +229,7 @@ void Cadastrar_Produto(produto** lista){
 
     while(aux != NULL){
         if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
-            printf("\n\tProduto ja cadastrado!");
+            printf("\n\tProduto ja cadastrado!\n");
             free(novo_produto);
             return;
         } else {
@@ -248,7 +248,7 @@ void Listagem_Produto_Recursiva(produto* lista){
 
     if(aux == NULL) return;
 
-    printf("\n\t%-30s | %-10.2f R$ | %-10s | %-10d", aux->nome, aux->preco, aux->codigo, aux->quantidade);
+    printf("\n\t%-30s | %-10.2f R$ | %-10s | %-10d\n", aux->nome, aux->preco, aux->codigo, aux->quantidade);
     Listagem_Produto_Recursiva(aux->proximo_produto);
 }
 
@@ -256,7 +256,7 @@ produto *Buscar_Produto(produto* lista, char* buscado){
     produto* aux = lista;
 
     if(aux == NULL){
-        printf("\n\tLista vazia!");
+        printf("\n\tLista vazia!\n");
         return NULL;
     }
 
@@ -275,7 +275,7 @@ produto *Buscar_Produto(produto* lista, char* buscado){
         }
     }
 
-    printf("\n\tCodigo nao cadastrado!");
+    printf("\n\tCodigo nao cadastrado!\n");
 }
 
 void Editar_Dados_Produtos(produto** lista){
@@ -311,17 +311,17 @@ void Editar_Dados_Produtos(produto** lista){
                     scanf("%s", aux->codigo);
                     break;
                 case 4:
-                    printf("\n\tNova quantidade");
+                    printf("\n\tNova quantidade: ");
                     scanf("%d",&aux->quantidade);
                     break;
 
                 default:
-                    printf("\n\tOpcao Invalida!");
+                    printf("\n\tOpcao Invalida!\n");
                     break;
             }
         }while(escolha != 0);
     } else {
-        printf("\n\tCodigo Nao Cadastrado");
+        printf("\n\tCodigo Nao Cadastrado\n");
     }             
 }
 
@@ -329,7 +329,7 @@ void Remover_Produto(produto** lista){
     produto* aux = *lista;
 
     if(aux == NULL){
-        printf("\n\tA lista esta vazia!");
+        printf("\n\tA lista esta vazia!\n");
         return;
     }
 
@@ -338,7 +338,7 @@ void Remover_Produto(produto** lista){
     scanf("%s", removido);
 
     if(strcmp(aux->codigo, removido) == 0){ /*primeiro da fila é quem vai ser removido*/
-        printf("\n\tProduto Removido!");
+        printf("\n\tProduto Removido!\n");
         *lista = aux->proximo_produto;
         free(aux);
         return;
@@ -352,12 +352,12 @@ void Remover_Produto(produto** lista){
     } 
 
     if(aux != NULL && strcmp(aux->codigo, removido) == 0){
-        printf("\n\tProduto Removido!");
+        printf("\n\tProduto Removido!\n");
         rastro->proximo_produto = aux->proximo_produto;
         free(aux);
         return;
     }
-    printf("\n\tProduto nao Cadastrado!");    
+    printf("\n\tProduto nao Cadastrado!\n");    
 }
 
 void Buscar_Produto(produto* lista){
@@ -368,7 +368,7 @@ void Buscar_Produto(produto* lista){
         return;
     }
 
-    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+    printf("\n\t%-30s | %-13s | %-10s | %-10s\n", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
     Listagem_Produto_Recursiva(lista);
 
     char buscado[11];
@@ -378,7 +378,7 @@ void Buscar_Produto(produto* lista){
 
     while(aux != NULL){
         if(strcmp(buscado, aux->codigo) == 0){
-            printf("\n\tProduto encontrado!");
+            printf("\n\tProduto encontrado!\n");
             return;
         } else {
             aux = aux->proximo_produto;
@@ -399,12 +399,12 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     novo_carrinho ->produto_escolhido = Buscar_Produto(lista_produto,codico);
     free(codico);
     if(novo_carrinho->produto_escolhido ==NULL){
-        printf("Produto escolhido não existe");
+        printf("\n\tProduto escolhido não existe\n");
         free(novo_carrinho);
         return;
     }
     char *cpf = malloc(20*sizeof(char));
-    printf("\nEscolha um Cliente: ");
+    printf("\n\tEscolha um Cliente: ");
     Listagem_Clientes_Recursiva(lista_client);
     scanf("%s",cpf);
 
@@ -425,7 +425,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
 void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){client* aux_cliente = *lista_clientes;
     char cpf_cliente[12];
 
-    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
 
     Listagem_Clientes_Recursiva(aux_cliente);
 
@@ -437,13 +437,13 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
     }
 
     if(aux_cliente == NULL){
-        printf("\n\tCPF nao cadatrado!");
+        printf("\n\tCPF nao cadatrado!\n");
         return;
     }
 
     produto* aux_produto = lista_produtos;
 
-    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+    printf("\n\t%-30s | %-13s | %-10s | %-10s\n", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
 
     Listagem_Produto_Recursiva(lista_produtos);
 
@@ -492,7 +492,7 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
 }
 
 void Itens_no_Carrinho(client* lista){
-
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
     Listagem_Clientes_Recursiva(lista);
 
     client* aux = lista;
@@ -589,7 +589,6 @@ void Custo_Total_do_Carrinho(client* lista_de_clientes){
 
 //free
 
-
 void Free_produto(produto* lista){
     produto *aux;
     while(lista!=NULL){
@@ -598,6 +597,7 @@ void Free_produto(produto* lista){
         free(aux);
     }
 }
+
 void Free_client(client *lista){
     client *aux;
     while(lista!=NULL){
@@ -605,20 +605,18 @@ void Free_client(client *lista){
         Free_carrinho(aux->meu_carrinho);
         lista = lista->proximo_cliente;
         free(aux);
-
     }
-
 }
+
 void Free_carrinho(carrinho *lista){
     carrinho *aux;
     while(lista!=NULL){
         aux = lista;
         lista = lista->next_item;
-        free(aux);
-        
+        free(aux);   
     }
-
 }
+
 
 
 
