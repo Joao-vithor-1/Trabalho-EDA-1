@@ -1,6 +1,5 @@
 #include "funcoes.h"
 
-
 // Gerenciamento de Clientes
 
 void Cadastrar_Cliente(client** lista){ 
@@ -591,6 +590,7 @@ void Free_carrinho(carrinho *lista){
     }
 
 }
+
 
 
 
