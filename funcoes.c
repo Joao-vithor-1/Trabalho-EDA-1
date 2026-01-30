@@ -343,7 +343,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     scanf("%s", codico);
 
     novo_carrinho ->produto_escolhido = Buscar_Produto(lista_produto,codico);
-    free(&codico);
+    free(codico);
     if(novo_carrinho->produto_escolhido ==NULL){
         printf("Produto escolhido não existe");
         free(novo_carrinho);
@@ -354,6 +354,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     scanf("%s",cpf);
     client *aux = Buscar_Cliente(lista_client,cpf);
     //chegaem se o cpf existe e se o head existe tambem
+    free(cpf);
     if(aux!=NULL){
         if(aux->meu_carrinho==NULL) aux->meu_carrinho = novo_carrinho;
     }
@@ -367,6 +368,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
 
 
 }
+
 
 
 
