@@ -5,8 +5,8 @@
 
 int main(){
     int opcao;
-    client* lista_client = NULL;
-    produto* lista_produto = NULL;
+    client * lista_client = NULL;
+    produto *lista_produto = NULL;
 
 
 
@@ -14,80 +14,64 @@ int main(){
         printf("\n\t1 - Gerenciamento de Clientes");
         printf("\n\t2 - Gerenciamento de Produtos");
         printf("\n\t3 - Compras");
-        printf("\n\tSelecione uma das opcoes acima: ");
+        printf("selecione uma das opcoes acima: ");
         scanf("%d", &opcao);
 
         switch(opcao){
             case 1: {
                 int opcao_cliente;
-                printf("\n\t1 - Cadastro de Clientes");
-                printf("\n\t2 - Listagem de Clientes ");
-                printf("\n\t3 - Buscar Cliente");
-                printf("\n\t4 - Editar Dados");
-                printf("\n\t5 - Remover Cliente");
-                printf("\n\tSelecione uma das opcoes acima: ");
+                printf("\n\tCadastro de Clientes - 1");
+                printf("\n\tListagem de Clientes - 2 ");
+                printf("\n\tBuscar Cliente - 3");
+                printf("\n\t Editar Dados - 4");
+                printf("\n\tRemover Cliente - 5");
+                printf("\n\tselecione uma das opcoes acima: ");
                 scanf("%d", &opcao_cliente);
                 switch(opcao_cliente){
                     case 1: Cadastrar_Cliente(&lista_client); break;
-                    case 2: 
-                        printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
-                        Listagem_Clientes_Recursiva(lista_client); 
-                        break;
-                    case 3: Buscar_Cliente(lista_client); break;
+                    case 2: Listagem_Clientes_Recursiva(lista_client); break;
+                    case 3: 
+                    char *buscado = malloc(12*sizeof(char));
+                    printf("\n\tDigite o cpf a ser buscado: ");
+                    scanf("%s", buscado);
+                    Buscar_Cliente(lista_client,buscado); 
+                    free(buscado);
+                    break;
                     case 4 : Editar_Dados_Cliente(&lista_client); break;
                     case 5 : Remover_Cliente(&lista_client); break;
                     default: break;
                 }
-                break;
-            }
             case 2:{
                 int opcao_produto;
-                printf("\n\t1 - Cadastro de Produtos");
-                printf("\n\t2 - Listagem dos Produtos");
-                printf("\n\t3 - Buscar Produto");
-                printf("\n\t4 - Editar Dados");
-                printf("\n\t5 - Remover Produto");
-                printf("\n\tSelecione uma das opcoes acima: ");
+                printf("\n\tCadastro de Produtos - 1");
+                printf("\n\tListagem dos Produtos - 2 ");
+                printf("\n\tBuscar Produto - 3");
+                printf("\n\t Editar Dados - 4");
+                printf("\n\tRemover Produto - 5");
+                printf("\n\tselecione uma das opcoes acima: ");
                 scanf("%d",&opcao_produto);
                 switch(opcao_produto){
                     case 1 : Cadastrar_Produto(&lista_produto); break;
-                    case 2 : 
-                        printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
-                        Listagem_Produto_Recursiva(lista_produto); 
-                        break;
-                    case 3: Buscar_Produto(lista_produto); break;
+                    case 2 : Listagem_Produto_Recursiva(lista_produto); break;
+                    case 3: 
+                    char *buscado = malloc(12*sizeof(char));
+                    printf("\n\tCodigo do produto buscado: ");
+                    scanf("%s", buscado);
+                    Buscar_Produto(lista_produto,buscado); 
+                    free(buscado);
+                    break;
                     case 4: Editar_Dados_Produtos(&lista_produto); break;
                     case 5: Remover_Produto(&lista_produto); break;
                     default: break;
                 }
-                break;
 
             }
-            case 3:{
-                int opcao_compra;
-                printf("\n\t1 - Adicionar ao Carrinho");
-                printf("\n\t2 - Listagem do Carrinho");
-                printf("\n\t3 - Preco Total do Carrinho");
-                printf("\n\t4 - Remover Produto do Carrinho");
-                printf("\n\tSelecione uma das opcoes acima: ");
-                scanf("%d", &opcao_compra);
-                switch(opcao_compra){
-                    case 1: Adicionar_Produtos_No_Carrinho(&lista_client, lista_produto); break;
-                    case 2 : Itens_no_Carrinho(lista_client); break;
-                    case 3: Custo_Total_do_Carrinho(lista_client); break;
-                    case 4: break;
-                }
-                break;
             }
-            case 0:
-                break;
-            default:
-                printf("\n\tValor Invalido!");
-                break;
+            
         }
-    }while(opcao != 0);                
+    }while(opcao != 0);/*pensei de colocar uma opcao de saida do programa, 
+                tipo, quando for 0, o programa encerra*/
 }
-
 
 
 
