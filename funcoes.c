@@ -1,6 +1,53 @@
 #include "funcoes.h"
+//funcões sem ser void
+client * Buscar_Cliente(client* lista, char *buscado){
+    /*
+    char buscado[12];
+    printf("\n\tDigite o cpf a ser buscado: ");
+    scanf("%s", buscado);*/
+
+    client* aux = lista;
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->cpf) == 0){
+            printf("\n\tCPF encontrado!\n");
+            return aux;
+        } else {
+            aux = aux->proximo_cliente;
+        }
+    }
+    return NULL;
+}
+produto *Buscar_Produto(produto* lista, char* buscado){
+    produto* aux = lista;
+
+    if(aux == NULL){
+        printf("\n\tLista vazia!\n");
+        return NULL;
+    }
+
+    /*char buscado[11];
+
+    printf("\n\tCodigo do produto buscado: ");
+    scanf("%s", buscado);*/
+
+    while(aux != NULL){
+        if(strcmp(buscado, aux->codigo) == 0){
+            printf("\n\tProduto encontrado!");
+            return aux;
+
+        } else {
+            aux = aux->proximo_produto;
+        }
+    }
+
+    printf("\n\tCodigo nao cadastrado!\n");
+    return NULL;
+}
 
 // Gerenciamento de Clientes
+
+
 
 void Cadastrar_Cliente(client** lista){ 
 
@@ -56,30 +103,32 @@ void Listagem_Clientes_Recursiva(client* lista){
     Listagem_Clientes_Recursiva(aux->proximo_cliente);  
 }
 
-client * Buscar_Cliente(client* lista, char *buscado){
-    /*
+
+
+void Buscar_Cliente_void(client* lista){
+
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    Listagem_Clientes_Recursiva(lista);
+
     char buscado[12];
     printf("\n\tDigite o cpf a ser buscado: ");
-    scanf("%s", buscado);*/
+    scanf("%s", buscado);
 
     client* aux = lista;
 
     while(aux != NULL){
         if(strcmp(buscado, aux->cpf) == 0){
             printf("\n\tCPF encontrado!\n");
-            return aux;
+            return;
         } else {
             aux = aux->proximo_cliente;
         }
     }
 
     if(aux == NULL){
-        printf("\n\tCPF nao esta na lista!");
-        return NULL;
+        printf("\n\tCPF nao esta na lista!\n");
     }
-} 
-
-
+}
 
 void Editar_Dados_Cliente(client** lista){
 
@@ -231,31 +280,7 @@ void Listagem_Produto_Recursiva(produto* lista){
     Listagem_Produto_Recursiva(aux->proximo_produto);
 }
 
-produto *Buscar_Produto(produto* lista, char* buscado){
-    produto* aux = lista;
 
-    if(aux == NULL){
-        printf("\n\tLista vazia!\n");
-        return NULL;
-    }
-
-    /*char buscado[11];
-
-    printf("\n\tCodigo do produto buscado: ");
-    scanf("%s", buscado);*/
-
-    while(aux != NULL){
-        if(strcmp(buscado, aux->codigo) == 0){
-            printf("\n\tProduto encontrado!");
-            return aux;
-
-        } else {
-            aux = aux->proximo_produto;
-        }
-    }
-
-    printf("\n\tCodigo nao cadastrado!\n");
-}
 
 void Editar_Dados_Produtos(produto** lista){
     
@@ -343,7 +368,7 @@ void Remover_Produto(produto** lista){
     printf("\n\tProduto nao Cadastrado!\n");    
 }
 
-void Buscar_Produto(produto* lista){
+void Buscar_Produto_void(produto* lista){
     produto* aux = lista;
 
     if(aux == NULL){
@@ -550,6 +575,103 @@ void Custo_Total_do_Carrinho(client* lista_de_clientes){
     }
 
     printf("\n\tO preco total a ser pago eh: %.2f R$\n", total_a_pagar);
+}
+
+void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos){
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    Listagem_Clientes_Recursiva(*lista_cliente);
+
+    char cpf_correto[12];
+    printf("\n\tCPF do cliente o qual o produto sera retirado do carrinho: ");
+    scanf("%s", cpf_correto);
+
+
+    //localiza o cliente
+    client* aux = *lista_cliente;
+
+    while(aux != NULL && strcmp(aux->cpf, cpf_correto) != 0) aux = aux->proximo_cliente;
+
+    if(aux == NULL){
+        printf("\n\tCPF nao cadastrado!\n");
+        return;
+    }
+
+     printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+    Listagem_Produto_Recursiva(lista_produtos);
+
+    char codigo_do_removido[11];
+    printf("\n\tDigite o Codigo do produto que sera removido: ");
+    scanf("%s", codigo_do_removido);
+
+
+
+    //localiza o produto
+    produto* verificador = lista_produtos;
+
+    while(verificador != NULL && strcmp(verificador->codigo, codigo_do_removido) != 0) 
+        verificador = verificador->proximo_produto;
+    
+    if(verificador == NULL){
+        printf("\n\tCodigo nao cadastrado!\n");
+        return;
+    }
+
+    //aponta para o produto a ser removido
+    carrinho* localiza_item = aux->meu_carrinho;
+
+    while(localiza_item != NULL && strcmp(localiza_item->produto_escolhido->codigo, codigo_do_removido) != 0){
+        localiza_item = localiza_item->next_item;
+    }
+
+    if(localiza_item == NULL){
+        printf("\n\tProduto nao esta no carrinho!\n");
+        return;
+    }
+
+    int maximo = localiza_item->qtd_comprada;
+
+    int qtd_removida;
+    printf("\n\tQuantas unidades de %s devem ser removidas (max %d)?", localiza_item->produto_escolhido->nome, maximo);
+    printf("\n\tQtd: ");
+    scanf("%d",&qtd_removida);
+
+    //verifica se a remocao nao é maior do que a quantidade que esta no carrinho
+    if(qtd_removida > maximo){
+        printf("\n\tNao foi possivel realizar a remocao!\n");
+        printf("\n\tExcedeu o limite do produto no carrinho!\n");
+        return;
+    }
+
+    localiza_item->qtd_comprada -= qtd_removida;
+    verificador->quantidade += qtd_removida;    
+
+    //se a quantidade for 0, remove da lista de itens do carrinho automaticamente
+    if(localiza_item->qtd_comprada == 0){
+
+        carrinho* rastro = NULL; // aponta pro NULL
+        carrinho* auxiliar_remocao = aux->meu_carrinho; // aponta pro primeiro item do carrinho
+
+        //caso o removido seja o primeiro da lista do carrinho
+        if(auxiliar_remocao == localiza_item){ 
+            aux->meu_carrinho = auxiliar_remocao->next_item; 
+            free(auxiliar_remocao); 
+            printf("\n\tProduto removido com sucesso!\n");
+            return;
+        }
+
+        // se a remocao em for qualquer senao o primeiro
+        while(auxiliar_remocao != localiza_item && auxiliar_remocao != NULL){
+            rastro = auxiliar_remocao;
+            auxiliar_remocao = auxiliar_remocao->next_item;
+        }
+
+        if(auxiliar_remocao != NULL){
+            rastro->next_item = auxiliar_remocao->next_item; // o anterior aponta pro proximo do proximo
+            free(auxiliar_remocao); //libera o proximo
+            printf("\n\tProduto removido com sucesso!\n");
+            return;
+        }
+    }
 }
 
 
