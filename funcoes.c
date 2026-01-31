@@ -393,7 +393,8 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     *lista_carrinho = novo_carrinho;
 }
 
-void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){client* aux_cliente = *lista_clientes;
+void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){
+    client* aux_cliente = *lista_clientes;
     char cpf_cliente[12];
 
     printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
@@ -667,6 +668,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
