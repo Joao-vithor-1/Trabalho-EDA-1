@@ -33,7 +33,7 @@ int main(){
                         printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
                         Listagem_Clientes_Recursiva(lista_client); 
                         break;
-                    case 3: Buscar_Cliente(lista_client); break;
+                    case 3: Buscar_Cliente_void(lista_client); break;
                     case 4 : Editar_Dados_Cliente(&lista_client); break;
                     case 5 : Remover_Cliente(&lista_client); break;
                     case 0 :break;
@@ -57,7 +57,7 @@ int main(){
                         printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
                         Listagem_Produto_Recursiva(lista_produto); 
                         break;
-                    case 3: Buscar_Produto(lista_produto); break;
+                    case 3: Buscar_Produto_void(lista_produto); break;
                     case 4: Editar_Dados_Produtos(&lista_produto); break;
                     case 5: Remover_Produto(&lista_produto); break;
                     case 0: break;
@@ -98,6 +98,7 @@ int main(){
         }
     }while(opcao != 0);                
 }
+
 
 
 
