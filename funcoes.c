@@ -598,6 +598,15 @@ void Free_produto(produto* lista){
     }
 }
 
+void Free_carrinho(carrinho *lista){
+    carrinho *aux;
+    while(lista!=NULL){
+        aux = lista;
+        lista = lista->next_item;
+        free(aux);   
+    }
+}
+
 void Free_client(client *lista){
     client *aux;
     while(lista!=NULL){
@@ -608,14 +617,6 @@ void Free_client(client *lista){
     }
 }
 
-void Free_carrinho(carrinho *lista){
-    carrinho *aux;
-    while(lista!=NULL){
-        aux = lista;
-        lista = lista->next_item;
-        free(aux);   
-    }
-}
 
 
 
