@@ -599,8 +599,19 @@ void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos){
         return;
     }
 
-     printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
-    Listagem_Produto_Recursiva(lista_produtos);
+    carrinho* auxiliar_carro = aux->meu_carrinho;
+    
+    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+
+    while(auxiliar_carro != NULL){
+        printf("\n\t%-40s | %-10.2f R$| %-12s | %-11d\n", 
+        auxiliar_carro->produto_escolhido->nome, 
+        auxiliar_carro->produto_escolhido->preco, 
+        auxiliar_carro->produto_escolhido->codigo, 
+        auxiliar_carro->qtd_comprada);
+        auxiliar_carro = auxiliar_carro->next_item;
+    }
+    
 
     char codigo_do_removido[11];
     printf("\n\tDigite o Codigo do produto que sera removido: ");
@@ -707,6 +718,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
