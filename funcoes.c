@@ -411,7 +411,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
         free(novo_carrinho);
         return;
     }
-    char *cpf = malloc(20*sizeof(char));
+    char *cpf = malloc(12*sizeof(char));
     printf("\n\tEscolha um Cliente: ");
     Listagem_Clientes_Recursiva(lista_client);
     scanf("%s",cpf);
@@ -704,6 +704,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
