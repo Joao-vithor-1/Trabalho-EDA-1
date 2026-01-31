@@ -26,13 +26,15 @@ void Cadastrar_Produto_Carrinho(carrinho ** lista_carrinho, produto *lista_produ
 void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos);
 void Itens_no_Carrinho(client* lista);
 void Custo_Total_do_Carrinho(client* lista_de_clientes);
-
+void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos);
 
 //free listas
 void Free_produto(produto* lista);
-void Free_client(client *lista);
 void Free_carrinho(carrinho *lista);
+void Free_client(client *lista);
+
 
 
 #endif
+
 
