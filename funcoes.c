@@ -397,6 +397,7 @@ void Buscar_Produto_void(produto* lista){
 }
 
 
+/*removido codigo legado, primeira tentativa do modo compra 
 void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produto, client * lista_client){
     carrinho *novo_carrinho = malloc(sizeof(carrinho));
     char *codico = malloc(50*sizeof(char));
@@ -428,7 +429,7 @@ void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produ
     }
     novo_carrinho ->next_item = *lista_carrinho;
     *lista_carrinho = novo_carrinho;
-}
+}*/
 
 void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){
     client* aux_cliente = *lista_clientes;
@@ -704,6 +705,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
