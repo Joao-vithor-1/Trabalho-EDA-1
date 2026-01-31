@@ -56,11 +56,11 @@ void Listagem_Clientes_Recursiva(client* lista){
     Listagem_Clientes_Recursiva(aux->proximo_cliente);  
 }
 
-/*client * Buscar_Cliente(client* lista, char *buscado){
+client * Buscar_Cliente(client* lista, char *buscado){
     /*
     char buscado[12];
     printf("\n\tDigite o cpf a ser buscado: ");
-    scanf("%s", buscado);
+    scanf("%s", buscado);*/
 
     client* aux = lista;
 
@@ -77,7 +77,7 @@ void Listagem_Clientes_Recursiva(client* lista){
         printf("\n\tCPF nao esta na lista!");
         return NULL;
     }
-} */
+} 
 
 void Buscar_Cliente(client* lista){
 
@@ -254,7 +254,7 @@ void Listagem_Produto_Recursiva(produto* lista){
     Listagem_Produto_Recursiva(aux->proximo_produto);
 }
 
-/*produto *Buscar_Produto(produto* lista, char* buscado){
+produto *Buscar_Produto(produto* lista, char* buscado){
     produto* aux = lista;
 
     if(aux == NULL){
@@ -265,7 +265,7 @@ void Listagem_Produto_Recursiva(produto* lista){
     /*char buscado[11];
 
     printf("\n\tCodigo do produto buscado: ");
-    scanf("%s", buscado);
+    scanf("%s", buscado);*/
 
     while(aux != NULL){
         if(strcmp(buscado, aux->codigo) == 0){
@@ -278,7 +278,7 @@ void Listagem_Produto_Recursiva(produto* lista){
     }
 
     printf("\n\tCodigo nao cadastrado!\n");
-}*/
+}
 
 void Editar_Dados_Produtos(produto** lista){
     
@@ -605,6 +605,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
