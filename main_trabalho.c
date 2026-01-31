@@ -11,6 +11,7 @@ int main(){
 
 
     do{
+        printf("\n\t0 - Sair");
         printf("\n\t1 - Gerenciamento de Clientes");
         printf("\n\t2 - Gerenciamento de Produtos");
         printf("\n\t3 - Compras");
@@ -20,6 +21,7 @@ int main(){
         switch(opcao){
             case 1: {
                 int opcao_cliente;
+                printf("\n\t0 - Sair");
                 printf("\n\t1 - Cadastro de Clientes");
                 printf("\n\t2 - Listagem de Clientes ");
                 printf("\n\t3 - Buscar Cliente");
@@ -36,12 +38,14 @@ int main(){
                     case 3: Buscar_Cliente(lista_client); break;
                     case 4 : Editar_Dados_Cliente(&lista_client); break;
                     case 5 : Remover_Cliente(&lista_client); break;
+                    case 0: break;
                     default: break;
                 }
                 break;
             }
             case 2:{
                 int opcao_produto;
+                printf("\n\t0 - Sair");
                 printf("\n\t1 - Cadastro de Produtos");
                 printf("\n\t2 - Listagem dos Produtos");
                 printf("\n\t3 - Buscar Produto");
@@ -58,6 +62,7 @@ int main(){
                     case 3: Buscar_Produto(lista_produto); break;
                     case 4: Editar_Dados_Produtos(&lista_produto); break;
                     case 5: Remover_Produto(&lista_produto); break;
+                    case 0: break;
                     default: break;
                 }
                 break;
@@ -65,6 +70,7 @@ int main(){
             }
             case 3:{
                 int opcao_compra;
+                printf("\n\t0 - Sair");
                 printf("\n\t1 - Adicionar ao Carrinho");
                 printf("\n\t2 - Listagem do Carrinho");
                 printf("\n\t3 - Preco Total do Carrinho");
@@ -76,6 +82,8 @@ int main(){
                     case 2 : Itens_no_Carrinho(lista_client); break;
                     case 3: Custo_Total_do_Carrinho(lista_client); break;
                     case 4: break;
+                    case 0: break;
+                    default: break;
                 }
                 break;
             }
@@ -87,6 +95,7 @@ int main(){
         }
     }while(opcao != 0);                
 }
+
 
 
 
