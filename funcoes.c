@@ -203,6 +203,7 @@ void Remover_Cliente(client** lista){
     if(strcmp(aux->cpf, removido) == 0){
         printf("\n\tCliente Removido!\n");
         *lista = aux->proximo_cliente;
+        Free_carrinho(aux->meu_carrinho);
         free(aux);
         return;
     }
@@ -215,6 +216,7 @@ void Remover_Cliente(client** lista){
     if(strcmp(aux->cpf, removido) == 0 && aux != NULL){
         printf("\n\tCliente Removido!\n");
         rastro->proximo_cliente = aux->proximo_cliente;
+        Free_carrinho(aux->meu_carrinho);
         free(aux);
         return;
     }
@@ -705,6 +707,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
