@@ -79,15 +79,20 @@ int main(){
                 scanf("%d", &opcao_compra);
                 switch(opcao_compra){
                     case 1: Adicionar_Produtos_No_Carrinho(&lista_client, lista_produto); break;
-                    case 2 : Itens_no_Carrinho(lista_client); break;
+                    case 2 :
+                        printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL"); 
+                        Itens_no_Carrinho(lista_client); 
+                        break;
                     case 3: Custo_Total_do_Carrinho(lista_client); break;
-                    case 4: break;
+                    case 4: Remover_do_Carrinho(&lista_client, lista_produto); break;
                     case 0: break;
                     default: break;
                 }
                 break;
             }
             case 0:
+                if(lista_produto) Free_produto(lista_produto);
+                if(lista_client) Free_client(lista_client);
                 break;
             default:
                 printf("\n\tValor Invalido!");
@@ -95,6 +100,7 @@ int main(){
         }
     }while(opcao != 0);                
 }
+
 
 
 
