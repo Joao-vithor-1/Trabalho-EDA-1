@@ -2,9 +2,9 @@
 #define STRUCTS_H
 
 typedef struct carrinho{
-    struct produto* produto_escolhido; 
+    struct produto* produto_escolhido; //aponta pro produto escolhido
     int qtd_comprada;
-    struct carrinho* next_item; 
+    struct carrinho* next_item; //aponta pro proximo item do carrinho
 }carrinho;
 
 typedef struct client{
@@ -28,6 +28,7 @@ typedef struct produto{
 }produto;
 
 #endif
+
 
 
 
