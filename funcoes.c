@@ -79,30 +79,7 @@ client * Buscar_Cliente(client* lista, char *buscado){
     }
 } 
 
-void Buscar_Cliente(client* lista){
 
-    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s\n", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
-    Listagem_Clientes_Recursiva(lista);
-
-    char buscado[12];
-    printf("\n\tDigite o cpf a ser buscado: ");
-    scanf("%s", buscado);
-
-    client* aux = lista;
-
-    while(aux != NULL){
-        if(strcmp(buscado, aux->cpf) == 0){
-            printf("\n\tCPF encontrado!\n");
-            return;
-        } else {
-            aux = aux->proximo_cliente;
-        }
-    }
-
-    if(aux == NULL){
-        printf("\n\tCPF nao esta na lista!\n");
-    }
-}
 
 void Editar_Dados_Cliente(client** lista){
 
