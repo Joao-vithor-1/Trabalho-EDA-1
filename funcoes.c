@@ -488,16 +488,9 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
     printf("\n\tQtd: ");
     scanf("%d", &quantidade_adicionadas);
 
-    int maximo = aux_produto->quantidade;
-
-    aux_produto->quantidade = maximo - quantidade_adicionadas;
-
-    if(aux_produto->quantidade < 0){
-        printf("\n\tNao foi possivel adicionar ao carrinho!");
-        printf("\n\tExcedeu o limite do produto!");
-
-        aux_produto->quantidade = maximo;
-
+    
+    if(quantidade_adicionadas > aux_produto->quantidade || quantidade_adicionadas <= 0){
+        printf("\n\tQuantidade a ser adicionada invalida!\n");
         return;
     }
 
@@ -514,14 +507,6 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
     }
 
     if(achado == 1){
-
-        int nova_quantidade = ja_existe->qtd_comprada + quantidade_adicionadas;
-
-        if(nova_quantidade > maximo){
-            printf("\n\tInfelizmente, so temos %d no estoque", maximo);
-            return;   
-        }
-
         ja_existe->qtd_comprada += quantidade_adicionadas;
         printf("\n\tQuantidade Atualizada!\n");
     } else {
@@ -537,6 +522,9 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
         aux_cliente->meu_carrinho = novo_item_do_carrinho; // o novo topo da lista é o item adicionado
         printf("\n\tProduto Adicionado!\n");
     }
+
+    aux_produto->quantidade -= quantidade_adicionadas;
+    
 }
 
 void Itens_no_Carrinho(client* lista){
@@ -756,6 +744,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
