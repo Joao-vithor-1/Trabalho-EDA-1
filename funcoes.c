@@ -277,6 +277,8 @@ void Cadastrar_Produto(produto** lista){
 
     novo_produto->proximo_produto = *lista;
     *lista = novo_produto;
+
+    printf("\n\tProduto Cadastrado com Sucesso!\n");
 }
 
 void Listagem_Produto_Recursiva(produto* lista){
@@ -754,6 +756,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
