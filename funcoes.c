@@ -1,3 +1,4 @@
+
 #include "funcoes.h"
 //funcões sem ser void
 client * Buscar_Cliente(client* lista, char *buscado){
@@ -89,7 +90,7 @@ void Cadastrar_Cliente(client** lista){
 
     novo_cliente->proximo_cliente = *lista;
     *lista = novo_cliente;
-    
+    printf("\n\tCliente Cadastrado com Sucesso!\n");
 } 
 
 void Listagem_Clientes_Recursiva(client* lista){
@@ -497,17 +498,43 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
 
         return;
     }
+
+    carrinho* ja_existe = aux_cliente->meu_carrinho;
+    int achado = 0;
+
+    while(ja_existe!=NULL){
+        if(strcmp(ja_existe->produto_escolhido->nome, aux_produto->nome) == 0){
+            achado = 1;
+            break;
+        } else {
+            ja_existe = ja_existe->next_item;
+        }
+    }
+
+    if(achado == 1){
+
+        int nova_quantidade = ja_existe->qtd_comprada + quantidade_adicionadas;
+
+        if(nova_quantidade > maximo){
+            printf("\n\tInfelizmente, so temos %d no estoque", maximo);
+            return;   
+        }
+
+        ja_existe->qtd_comprada += quantidade_adicionadas;
+        printf("\n\tQuantidade Atualizada!\n");
+    } else {
     
-    carrinho* novo_item_do_carrinho = malloc(sizeof(carrinho));
+        carrinho* novo_item_do_carrinho = malloc(sizeof(carrinho));
 
-    novo_item_do_carrinho->qtd_comprada = quantidade_adicionadas; // coloca no carrinho numero x do item
+        novo_item_do_carrinho->qtd_comprada = quantidade_adicionadas; // coloca no carrinho numero x do item
 
-    novo_item_do_carrinho->produto_escolhido = aux_produto; // o item adicionado é o produto identificado pelo codigo
+        novo_item_do_carrinho->produto_escolhido = aux_produto; // o item adicionado é o produto identificado pelo codigo
 
-    novo_item_do_carrinho->next_item = aux_cliente->meu_carrinho; //aponta para o meu ultimo item adicionado
+        novo_item_do_carrinho->next_item = aux_cliente->meu_carrinho; //aponta para o meu ultimo item adicionado
 
-    aux_cliente->meu_carrinho = novo_item_do_carrinho; // o novo topo da lista é o item adicionado
-
+        aux_cliente->meu_carrinho = novo_item_do_carrinho; // o novo topo da lista é o item adicionado
+        printf("\n\tProduto Adicionado!\n");
+    }
 }
 
 void Itens_no_Carrinho(client* lista){
@@ -607,8 +634,8 @@ void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos){
     }
 
     carrinho* auxiliar_carro = aux->meu_carrinho;
-    
-    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+
+    printf("\n\t%-40s | %-12s | %-12s | %-11s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
 
     while(auxiliar_carro != NULL){
         printf("\n\t%-40s | %-10.2f R$| %-12s | %-11d\n", 
@@ -694,6 +721,8 @@ void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos){
         }
     }
 }
+
+
 
 
 //free
