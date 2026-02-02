@@ -7,7 +7,7 @@ typedef struct carrinho{
     struct carrinho* next_item; //aponta pro proximo item do carrinho
 }carrinho;
 
-typedef struct client{
+typedef struct client{ //124+20
     char cpf[12]; 
     char nome[50];
     char email[50];
@@ -28,6 +28,7 @@ typedef struct produto{
 }produto;
 
 #endif
+
 
 
 
