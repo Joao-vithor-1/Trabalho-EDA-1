@@ -195,6 +195,8 @@ void Remover_Cliente(client** lista){
         printf("\n\tLista Vazia!\n");
         return;
     }
+    printf("\n\t%-15s | %-30s | %-15s | %-15s | %-30s", "CPF", "NOME", "TELEFONE", "NASCIMENTO", "EMAIL");
+    Listagem_Clientes_Recursiva(aux);
 
    char removido[12];
    printf("\n\tDigite o CPF do cliente a ser removido: ");
@@ -207,21 +209,24 @@ void Remover_Cliente(client** lista){
         free(aux);
         return;
     }
-
+    
+    
     while(aux !=  NULL && strcmp(aux->cpf, removido) != 0){
         rastro = aux;
         aux = aux->proximo_cliente;
     }
-        
-    if(strcmp(aux->cpf, removido) == 0 && aux != NULL){
+   
+    if(aux != NULL && strcmp(aux->cpf, removido) == 0){
         printf("\n\tCliente Removido!\n");
         rastro->proximo_cliente = aux->proximo_cliente;
         Free_carrinho(aux->meu_carrinho);
         free(aux);
         return;
     }
-
-    printf("\n\tCliente nao Encontrado!\n");
+    printf("\n\tCliente nao existe\n");
+    
+    
+    
 }
 
 //Gerenciamento de produtos
@@ -342,6 +347,8 @@ void Remover_Produto(produto** lista){
         printf("\n\tA lista esta vazia!\n");
         return;
     }
+    printf("\n\t%-30s | %-13s | %-10s | %-10s", "NOME", "PRECO", "CODIGO", "QUANTIDADE");
+    Listagem_Produto_Recursiva(aux);
 
     char removido[11];
     printf("Digite o codigo do produto a ser removido: ");
@@ -360,7 +367,7 @@ void Remover_Produto(produto** lista){
         rastro = aux;                                            //ou dar NULL
         aux = aux->proximo_produto;
     } 
-
+    
     if(aux != NULL && strcmp(aux->codigo, removido) == 0){
         printf("\n\tProduto Removido!\n");
         rastro->proximo_produto = aux->proximo_produto;
