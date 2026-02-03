@@ -23,7 +23,6 @@ void Remover_Produto(produto** lista,client* lista_client);
 void Buscar_Produto_void(produto* lista);
 
 //gerenciamento modo compra
-void Cadastrar_Produto_Carrinho(carrinho ** lista_carrinho, produto *lista_produto, client *lista_client);
 void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos);
 void Itens_no_Carrinho(client* lista);
 void Custo_Total_do_Carrinho(client* lista_de_clientes);
@@ -39,6 +38,7 @@ void Free_client(client *lista);
 
 
 #endif
+
 
 
 
