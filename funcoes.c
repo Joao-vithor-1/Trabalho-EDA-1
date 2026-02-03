@@ -411,39 +411,6 @@ void Buscar_Produto_void(produto* lista){
 }
 
 
-/*removido codigo legado, primeira tentativa do modo compra 
-void Cadastrar_Produto_Carrinho(carrinho  **lista_carrinho, produto *lista_produto, client * lista_client){
-    carrinho *novo_carrinho = malloc(sizeof(carrinho));
-    char *codico = malloc(50*sizeof(char));
-    printf("\n\tselecione um produto dos  listados abaixo: ");
-    Listagem_Produto_Recursiva(lista_produto);
-    scanf("%s", codico);
-
-    novo_carrinho ->produto_escolhido = Buscar_Produto(lista_produto,codico);
-    free(codico);
-    if(novo_carrinho->produto_escolhido ==NULL){
-        printf("\n\tProduto escolhido não existe\n");
-        free(novo_carrinho);
-        return;
-    }
-    char *cpf = malloc(12*sizeof(char));
-    printf("\n\tEscolha um Cliente: ");
-    Listagem_Clientes_Recursiva(lista_client);
-    scanf("%s",cpf);
-
-    client *aux = Buscar_Cliente(lista_client,cpf);
-    //verificar se o cpf existe e se o head existe tambem
-    free(cpf);
-    if(aux!=NULL){
-        if(aux->meu_carrinho==NULL) aux->meu_carrinho = novo_carrinho;
-    }
-    else{
-        free(novo_carrinho);
-        return;
-    }
-    novo_carrinho ->next_item = *lista_carrinho;
-    *lista_carrinho = novo_carrinho;
-}*/
 
 void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_produtos){
     client* aux_cliente = *lista_clientes;
@@ -774,6 +741,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
