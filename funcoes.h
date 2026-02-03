@@ -19,7 +19,7 @@ void Cadastrar_Produto(produto** lista);
 void Listagem_Produto_Recursiva(produto* lista);
 produto *Buscar_Produto(produto* lista, char* buscado);
 void Editar_Dados_Produtos(produto** lista);
-void Remover_Produto(produto** lista);
+void Remover_Produto(produto** lista,client* lista_client);
 void Buscar_Produto_void(produto* lista);
 
 //gerenciamento modo compra
@@ -28,7 +28,7 @@ void Adicionar_Produtos_No_Carrinho(client** lista_clientes, produto* lista_prod
 void Itens_no_Carrinho(client* lista);
 void Custo_Total_do_Carrinho(client* lista_de_clientes);
 void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos);
-
+void Remover_do_carrinho_produtos(client* lista_clientes,produto *removido);
 
 
 //free listas

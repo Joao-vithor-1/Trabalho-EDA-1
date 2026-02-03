@@ -343,7 +343,7 @@ void Editar_Dados_Produtos(produto** lista){
     }                       
 }
 
-void Remover_Produto(produto** lista){
+void Remover_Produto(produto** lista, client* lista_client){
     produto* aux = *lista;
 
     if(aux == NULL){
@@ -360,6 +360,7 @@ void Remover_Produto(produto** lista){
     if(strcmp(aux->codigo, removido) == 0){ /*primeiro da fila é quem vai ser removido*/
         printf("\n\tProduto Removido!\n");
         *lista = aux->proximo_produto;
+        Remover_do_carrinho_produtos(lista_client,aux);
         free(aux);
         return;
     }
@@ -374,6 +375,7 @@ void Remover_Produto(produto** lista){
     if(aux != NULL && strcmp(aux->codigo, removido) == 0){
         printf("\n\tProduto Removido!\n");
         rastro->proximo_produto = aux->proximo_produto;
+        Remover_do_carrinho_produtos(lista_client,aux);
         free(aux);
         return;
     }
@@ -711,7 +713,35 @@ void Remover_do_Carrinho(client** lista_cliente, produto* lista_produtos){
         }
     }
 }
+//função para remover produtos removidos na função remover_produto
+void Remover_do_carrinho_produtos(client* lista_clientes, produto *removido) {
+    client *aux = lista_clientes;
+    
+    while (aux != NULL) { 
+        carrinho *aux_carrinho = aux->meu_carrinho;
+        carrinho *rastro = NULL;
 
+        if (aux_carrinho != NULL) {
+            if (aux_carrinho->produto_escolhido == removido) {
+                aux->meu_carrinho = aux_carrinho->next_item;
+                free(aux_carrinho);
+            } 
+            else {
+             
+                while (aux_carrinho != NULL) {
+                    if (aux_carrinho->produto_escolhido == removido) {
+                        rastro->next_item = aux_carrinho->next_item;
+                        free(aux_carrinho);
+                        break; 
+                    }
+                    rastro = aux_carrinho;
+                    aux_carrinho = aux_carrinho->next_item;
+                }
+            }
+        }
+        aux = aux->proximo_cliente; 
+    }
+}
 
 
 
