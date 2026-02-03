@@ -59,7 +59,7 @@ int main(){
                         break;
                     case 3: Buscar_Produto_void(lista_produto); break;
                     case 4: Editar_Dados_Produtos(&lista_produto); break;
-                    case 5: Remover_Produto(&lista_produto); break;
+                    case 5: Remover_Produto(&lista_produto, lista_client); break;
                     case 0: break;
                     default: break;
                 }
@@ -98,6 +98,7 @@ int main(){
         }
     }while(opcao != 0);                
 }
+
 
 
 
