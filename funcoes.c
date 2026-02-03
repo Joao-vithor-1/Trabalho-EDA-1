@@ -1,6 +1,6 @@
 
 #include "funcoes.h"
-//funcões sem ser void
+//funcões  sem ser void
 client * Buscar_Cliente(client* lista, char *buscado){
     /*
     char buscado[12];
@@ -741,6 +741,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
