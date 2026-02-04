@@ -261,17 +261,6 @@ void Cadastrar_Produto(produto** lista){
     printf("\n\tQuantidade do produto a ser cadastrada: ");
     scanf("%d",&novo_produto->quantidade);
 
-    aux = *lista;
-
-    while(aux != NULL){
-        if(strcmp(aux->nome, novo_produto->nome) == 0 || strcmp(aux->codigo, novo_produto->codigo) == 0){
-            printf("\n\tProduto ja cadastrado!\n");
-            free(novo_produto);
-            return;
-        } else {
-            aux = aux->proximo_produto;
-        }
-    }
     printf("\n\tPreco do produto (em reais): ");
     scanf("%f", &novo_produto->preco);
 
@@ -741,6 +730,7 @@ void Free_client(client *lista){
         free(aux);
     }
 }
+
 
 
 
